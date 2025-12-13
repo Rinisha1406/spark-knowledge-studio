@@ -3,30 +3,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "./ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Courses", href: "#courses" },
-  { name: "Teacher Training", href: "#training" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Courses", href: "/courses" },
+  { name: "Teacher Training", href: "/training" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Top Bar */}
       <div className="hidden lg:block gradient-hero text-primary-foreground py-2">
         <div className="container flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
@@ -39,13 +38,10 @@ export const Navbar = () => {
               <span>fairfineduhubacademy@outlook.com</span>
             </a>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="opacity-90">ISO 9001:2015 Certified</span>
-          </div>
+          <span className="opacity-90">ISO 9001:2015 Certified</span>
         </div>
       </div>
 
-      {/* Main Navbar */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -54,43 +50,45 @@ export const Navbar = () => {
         }`}
       >
         <div className="container flex items-center justify-between py-3">
-          <a href="#home" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="Fairfin Eduhub Academy" className="h-14 w-auto" />
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                className="font-medium text-foreground/80 hover:text-primary transition-colors relative group"
+                to={link.href}
+                className={`font-medium transition-colors relative group ${
+                  location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
+                }`}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </a>
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
+              </Link>
             ))}
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
-            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Quick Enquiry
-            </Button>
-            <Button size="sm" className="gradient-green text-primary-foreground shadow-soft hover:opacity-90">
-              Enroll Now
-            </Button>
+            <Link to="/contact">
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                Quick Enquiry
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button size="sm" className="gradient-green text-primary-foreground shadow-soft hover:opacity-90">
+                Enroll Now
+              </Button>
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-foreground"
-          >
+          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 text-foreground">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -101,22 +99,19 @@ export const Navbar = () => {
             >
               <div className="container py-4 flex flex-col gap-4">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
+                    to={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                    className={`font-medium py-2 ${location.pathname === link.href ? "text-primary" : "text-foreground/80"}`}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
                 <div className="flex flex-col gap-3 pt-4 border-t">
-                  <Button variant="outline" className="border-primary text-primary">
-                    Quick Enquiry
-                  </Button>
-                  <Button className="gradient-green text-primary-foreground">
-                    Enroll Now
-                  </Button>
+                  <Link to="/contact" onClick={() => setIsOpen(false)}>
+                    <Button className="w-full gradient-green text-primary-foreground">Enroll Now</Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
