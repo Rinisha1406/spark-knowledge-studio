@@ -3,7 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "./ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// Function to scroll to top of the page
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+};
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -51,7 +59,7 @@ export const Navbar = () => {
       >
         <div className="container flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Fairfin Eduhub Academy" className="h-14 w-auto" />
+            <img src={logo} alt="Fairfin Eduhub Academy" className="h-16 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -59,6 +67,11 @@ export const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
+                onClick={() => {
+                  if (location.pathname === link.href) {
+                    scrollToTop();
+                  }
+                }}
                 className={`font-medium transition-colors relative group ${
                   location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
                 }`}
@@ -102,7 +115,12 @@ export const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (location.pathname === link.href) {
+                        scrollToTop();
+                      }
+                    }}
                     className={`font-medium py-2 ${location.pathname === link.href ? "text-primary" : "text-foreground/80"}`}
                   >
                     {link.name}

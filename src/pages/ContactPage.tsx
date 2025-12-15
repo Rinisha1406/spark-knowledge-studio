@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Working Hours",
-    details: ["Mon - Sat: 9:00 AM - 8:00 PM", "Sunday: By Appointment"],
+    details: ["Mon - Sat: 9:00 AM - 8:00 PM"],
     action: null,
     color: "from-violet-500 to-purple-600",
     description: "Flexible scheduling available"

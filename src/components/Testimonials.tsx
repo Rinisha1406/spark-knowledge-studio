@@ -47,7 +47,7 @@ const testimonials = [
   {
     name: "Lakshmi N",
     role: "Parent of Rohit, Age 9",
-    content: "The Spoken English program gave my son the confidence to speak fluently. He now participates actively in school debates and presentations. Thank you Fairfin Academy!",
+    content: "The Spoken English program gave my son the confidence to speak fluently. He now participates actively in school debates and presentations. Thank you Fairfin Eduhub Academy!",
     rating: 5,
     initials: "LN",
     course: "Spoken English"
@@ -89,7 +89,7 @@ export const Testimonials = () => {
               What Parents Say
             </h2>
             <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-              Real stories from families who have experienced the Fairfin difference. 
+              Real stories from families who have experienced the Fairfin Eduhub difference. 
               Join our growing community of satisfied parents.
             </p>
           </div>

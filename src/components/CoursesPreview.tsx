@@ -129,16 +129,22 @@ export const CoursesPreview = () => {
                 </ul>
                 
                 {/* CTA */}
-                <Link to="/contact">
-                  <Button variant="outline" className="w-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group-hover:border-primary transition-all">
+                <button 
+                  onClick={() => window.location.href = '/#/courses'}
+                  className="w-full"
+                >
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group-hover:border-primary transition-all"
+                  >
                     Learn More
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
-                </Link>
+                </button>
               </div>
             </motion.div>
           ))}
-        </div>
+        </div>  
 
         {/* View All CTA */}
         <motion.div

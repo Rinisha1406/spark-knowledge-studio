@@ -67,7 +67,7 @@ export const WhyChooseUs = () => {
             Why Choose Us
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            The Fairfin Advantage
+            The Fairfin Eduhub Advantage
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">
             We combine proven teaching methodologies with modern techniques to deliver exceptional educational experiences. 
