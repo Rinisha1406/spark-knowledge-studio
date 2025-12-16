@@ -18,6 +18,7 @@ const navLinks = [
   { name: "About", href: "/about" },
   { name: "Courses", href: "/courses" },
   { name: "Teacher Training", href: "/training" },
+  { name: "Franchise", href: "/franchise" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -53,9 +54,8 @@ export const Navbar = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-background/95 backdrop-blur-md shadow-soft" : "bg-background"
-        }`}
+        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-soft" : "bg-background"
+          }`}
       >
         <div className="container flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-3">
@@ -72,21 +72,19 @@ export const Navbar = () => {
                     scrollToTop();
                   }
                 }}
-                className={`font-medium transition-colors relative group ${
-                  location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
-                }`}
+                className={`font-medium transition-colors relative group ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
+                  }`}
               >
                 {link.name}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                  location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-                }`} />
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`} />
               </Link>
             ))}
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="inline-block"
             >
@@ -94,8 +92,8 @@ export const Navbar = () => {
                 Quick Enquiry
               </Button>
             </Link>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="inline-block"
             >

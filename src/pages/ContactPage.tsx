@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Send, MessageCircle, CheckCircle, Sparkles, Building, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Send, MessageCircle, CheckCircle, Sparkles, Building, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -112,9 +112,9 @@ const ContactPage = () => {
           <div className="absolute inset-0 bg-hero-pattern opacity-20" />
           <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
-          
+
           <div className="container relative z-10 text-center">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground font-semibold text-sm mb-6 border border-primary-foreground/20"
@@ -122,7 +122,7 @@ const ContactPage = () => {
               <Sparkles className="w-4 h-4 text-accent" />
               Get in Touch
             </motion.span>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -130,13 +130,13 @@ const ContactPage = () => {
             >
               Contact Us
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
             >
-              Have questions or ready to enroll? We'd love to hear from you. 
+              Have questions or ready to enroll? We'd love to hear from you.
               Reach out and let's discuss how we can help your child succeed.
             </motion.p>
           </div>
@@ -192,7 +192,7 @@ const ContactPage = () => {
                       <p className="text-muted-foreground">Fill the form and we'll get back to you soon</p>
                     </div>
                   </div>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
@@ -228,16 +228,19 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <label className="text-sm font-semibold mb-2 block text-foreground">Course Interested In</label>
-                      <select
-                        value={formData.course}
-                        onChange={(e) => setFormData({ ...formData, course: e.target.value })}
-                        className="w-full h-14 px-4 rounded-md border border-input bg-background text-foreground text-base"
-                      >
-                        <option value="">Select a course</option>
-                        {courses.map((course) => (
-                          <option key={course} value={course}>{course}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={formData.course}
+                          onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+                          className="w-full h-14 px-4 pr-12 rounded-md border border-input bg-background text-foreground text-base appearance-none cursor-pointer"
+                        >
+                          <option value="">Select a course</option>
+                          {courses.map((course) => (
+                            <option key={course} value={course}>{course}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+                      </div>
                     </div>
                     <div>
                       <label className="text-sm font-semibold mb-2 block text-foreground">Message</label>
@@ -272,21 +275,21 @@ const ContactPage = () => {
                     </div>
                     <h3 className="text-xl font-bold text-foreground">Our Locations</h3>
                   </div>
-                  
+
                   <div className="space-y-6">
                     {locations.map((location, index) => (
                       <div key={index} className="p-5 rounded-2xl bg-muted/50 hover:bg-muted transition-colors">
                         <h4 className="font-bold text-primary mb-2 text-lg">{location.name}</h4>
                         <p className="text-muted-foreground text-sm mb-3 leading-relaxed">{location.address}</p>
                         <div className="flex flex-wrap gap-3">
-                          <a 
+                          <a
                             href={`tel:${location.phone.replace(/\s/g, '')}`}
                             className="inline-flex items-center gap-2 text-sm text-primary hover:underline font-medium"
                           >
                             <Phone className="w-4 h-4" />
                             {location.phone}
                           </a>
-                          <a 
+                          <a
                             href={location.mapUrl}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -307,7 +310,7 @@ const ContactPage = () => {
                   <p className="text-primary-foreground/80 mb-6 leading-relaxed">
                     Need immediate assistance? Reach out to us directly via call or WhatsApp!
                   </p>
-                  
+
                   <div className="space-y-3">
                     <a href="tel:+919092592817" className="block">
                       <Button variant="secondary" className="w-full h-14 text-base font-semibold">
@@ -369,7 +372,7 @@ const ContactPage = () => {
               </p>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}

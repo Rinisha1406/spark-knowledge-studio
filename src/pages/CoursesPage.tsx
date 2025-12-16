@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { 
+import {
   CheckCircle,
   ArrowRight,
   Clock,
@@ -187,9 +187,9 @@ const CoursesPage = () => {
           <div className="absolute inset-0 bg-hero-pattern opacity-20" />
           <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
-          
+
           <div className="container relative z-10 text-center">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground font-semibold text-sm mb-6 border border-primary-foreground/20"
@@ -197,7 +197,7 @@ const CoursesPage = () => {
               <Sparkles className="w-4 h-4 text-accent" />
               8 Comprehensive Programs
             </motion.span>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -205,13 +205,13 @@ const CoursesPage = () => {
             >
               Student Courses
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
             >
-              Comprehensive skill development programs designed for children ages 4-14. 
+              Comprehensive skill development programs designed for children ages 4-14.
               Each course is crafted to build essential skills through engaging, proven methodologies.
             </motion.p>
           </div>
@@ -236,7 +236,7 @@ const CoursesPage = () => {
                 Each program is designed by experts to deliver maximum learning outcomes
               </p>
             </motion.div>
-            
+
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
               {courses.map((course, index) => (
                 <motion.div
@@ -245,11 +245,7 @@ const CoursesPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group h-full relative cursor-pointer"
-                  onClick={() => navigate(`/courses/${course.title.toLowerCase().replace(/\s+/g, '-')}`)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/courses/${course.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                  className="group h-full relative"
                 >
                   {/* Popular badge */}
                   {course.popular && (
@@ -260,13 +256,13 @@ const CoursesPage = () => {
                       </span>
                     </div>
                   )}
-                  
+
                   <div className="h-full flex flex-col bg-card rounded-3xl border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden">
                     {/* Card Header with Image or Gradient */}
                     <div className={`h-64 overflow-hidden`}>
                       {course.image ? (
-                        <img 
-                          src={course.image} 
+                        <img
+                          src={course.image}
                           alt={course.title}
                           className="w-full h-full object-cover"
                         />
@@ -281,10 +277,10 @@ const CoursesPage = () => {
                     {course.image && (
                       <div className="p-6">
                         <div className="flex items-center gap-3 mb-3">
-                          
+
                           <h3 className="text-xl font-bold text-foreground">{course.title}</h3>
                         </div>
-                        <p className="text-muted-foreground mb-4">{course.description}</p>
+                        <p className="text-muted-foreground mb-4 line-clamp-3 min-h-[4.5rem]">{course.description}</p>
                       </div>
                     )}
 
@@ -305,13 +301,21 @@ const CoursesPage = () => {
                           <p className="text-xs text-muted-foreground">{course.batchSize}</p>
                         </div>
                       </div>
-                      
+
+                      {/* Features */}
                       {/* Features */}
                       <ul className="space-y-3 flex-1 mb-6">
-                        {course.features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-3 text-sm">
+                        {course.features.slice(0, 5).map((feature, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm min-h-[1.25rem]">
                             <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-muted-foreground">{feature}</span>
+                            <span className="text-muted-foreground line-clamp-1">{feature}</span>
+                          </li>
+                        ))}
+                        {/* Fill empty spots if less than 5 features to keep height alignment */}
+                        {Array.from({ length: Math.max(0, 5 - course.features.length) }).map((_, i) => (
+                          <li key={`empty-${i}`} className="flex items-start gap-3 text-sm min-h-[1.25rem] invisible">
+                            <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-muted-foreground">Placeholder</span>
                           </li>
                         ))}
                       </ul>
@@ -365,7 +369,7 @@ const CoursesPage = () => {
                   {index < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-primary to-primary/20 -translate-x-1/2" />
                   )}
-                  
+
                   <div className="text-center">
                     <div className="w-20 h-20 rounded-full gradient-green flex items-center justify-center mx-auto mb-6 shadow-lg">
                       <span className="text-2xl font-bold text-primary-foreground">{item.step}</span>

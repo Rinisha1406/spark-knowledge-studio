@@ -6,27 +6,27 @@ import { CheckCircle, Target, Lightbulb, Heart, Award, Users, BookOpen, Graduati
 import logo from "@/assets/logo.png";
 
 const values = [
-  { 
-    icon: Target, 
-    title: "Excellence", 
+  {
+    icon: Target,
+    title: "Excellence",
     description: "We strive for excellence in every aspect of education, setting high standards for ourselves and our students",
     color: "from-emerald-500 to-teal-600"
   },
-  { 
-    icon: Lightbulb, 
-    title: "Innovation", 
+  {
+    icon: Lightbulb,
+    title: "Innovation",
     description: "Using modern teaching methods and proven techniques to deliver the best learning experience",
     color: "from-blue-500 to-cyan-600"
   },
-  { 
-    icon: Heart, 
-    title: "Care", 
+  {
+    icon: Heart,
+    title: "Care",
     description: "Creating a nurturing environment where every child feels valued and supported in their journey",
     color: "from-rose-500 to-pink-600"
   },
-  { 
-    icon: CheckCircle, 
-    title: "Quality", 
+  {
+    icon: CheckCircle,
+    title: "Quality",
     description: "ISO 9001:2015 certified quality standards ensuring the highest level of education",
     color: "from-violet-500 to-purple-600"
   },
@@ -105,9 +105,9 @@ const AboutPage = () => {
           <div className="absolute inset-0 bg-hero-pattern opacity-20" />
           <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
-          
+
           <div className="container relative z-10 text-center">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground font-semibold text-sm mb-6 border border-primary-foreground/20"
@@ -115,7 +115,7 @@ const AboutPage = () => {
               <Sparkles className="w-4 h-4 text-accent" />
               Learn, Explore, Achieve
             </motion.span>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -123,13 +123,13 @@ const AboutPage = () => {
             >
               About Fairfin Eduhub Academy
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
             >
-              Empowering young minds with skill development education since our founding. 
+              Empowering young minds with skill development education since our founding.
               We are committed to nurturing the next generation of confident, capable learners.
             </motion.p>
           </div>
@@ -152,18 +152,17 @@ const AboutPage = () => {
                   Building a Strong Foundation for Young Minds
                 </h2>
                 <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                  Fairfin Eduhub Academy is a premier educational institution dedicated to providing 
-                  high-quality skill development programs for children ages 4-14 years. As an 
-                  ISO 9001:2015 registered organization, we maintain the highest standards of 
-                  education and training excellence.
+                  Fairfin Eduhub Academy is a premier educational institution dedicated to providing
+                  high-quality skill development programs for children ages 4-14 years. As an
+                  ISO 9001:2015 registered organization, we maintain the highest standards of education and training excellence.
                 </p>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Our academy was founded with a simple yet powerful vision: to make quality 
-                  education accessible to every child and help them develop essential life skills. 
-                  We believe that every child has unique potential, and our role is to nurture and 
+                  Our academy was founded with a simple yet powerful vision: to make quality
+                  education accessible to every child and help them develop essential life skills.
+                  We believe that every child has unique potential, and our role is to nurture and
                   develop that potential through proven teaching methodologies.
                 </p>
-                
+
                 {/* Founder Info */}
                 <div className="bg-muted/50 rounded-2xl p-6 mb-8">
                   <div className="flex items-center gap-4">
@@ -177,28 +176,8 @@ const AboutPage = () => {
                     </div>
                   </div>
                 </div>
-                
-                {/* Values Grid */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {values.map((item, index) => (
-                    <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="group flex items-start gap-4 p-5 rounded-xl bg-card border border-border/50 hover:shadow-card transition-all"
-                    >
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                        <item.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+
+
               </motion.div>
 
               <motion.div
@@ -210,11 +189,11 @@ const AboutPage = () => {
                 <div className="relative bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 rounded-3xl p-10 border border-border/50">
                   <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/30 rounded-full blur-2xl" />
                   <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-primary/30 rounded-full blur-2xl" />
-                  
+
                   <div className="relative text-center">
-                    <img 
-                      src={logo} 
-                      alt="Fairfin Eduhub Academy Logo" 
+                    <img
+                      src={logo}
+                      alt="Fairfin Eduhub Academy Logo"
                       className="w-48 h-48 mx-auto mb-8 drop-shadow-xl"
                     />
                     <h3 className="text-3xl font-bold mb-3 text-foreground">Fairfin Eduhub Academy</h3>
@@ -226,6 +205,28 @@ const AboutPage = () => {
                   </div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Values Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+              {values.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group flex flex-col items-start gap-4 p-6 rounded-2xl bg-card border border-border/50 hover:shadow-elevated transition-all"
+                >
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
+                    <item.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground mb-2">{item.title}</h4>
+                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -246,7 +247,7 @@ const AboutPage = () => {
                 These numbers reflect our commitment to quality education and the trust that families place in us
               </p>
             </motion.div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
                 <motion.div
@@ -282,11 +283,11 @@ const AboutPage = () => {
                 Why Families Choose Us
               </h2>
               <p className="text-muted-foreground max-w-3xl mx-auto text-lg">
-                We combine traditional teaching wisdom with modern educational practices to create 
+                We combine traditional teaching wisdom with modern educational practices to create
                 a unique learning experience for every child
               </p>
             </motion.div>
-            
+
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, index) => (
                 <motion.div
@@ -324,7 +325,7 @@ const AboutPage = () => {
                 Milestones Along the Way
               </h2>
             </motion.div>
-            
+
             <div className="max-w-4xl mx-auto">
               {timeline.map((item, index) => (
                 <motion.div
@@ -370,7 +371,7 @@ const AboutPage = () => {
                 </div>
                 <h3 className="text-3xl font-bold mb-6 text-foreground">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-                  To provide world-class skill development education that empowers children to excel 
+                  To provide world-class skill development education that empowers children to excel
                   academically and develop essential life skills that will serve them throughout their lives.
                 </p>
                 <ul className="space-y-3">
@@ -401,8 +402,8 @@ const AboutPage = () => {
                 </div>
                 <h3 className="text-3xl font-bold mb-6 text-foreground">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-                  To become the leading skill development academy in Chennai, known for producing 
-                  confident, capable, and creative young minds who are ready to take on future 
+                  To become the leading skill development academy in Chennai, known for producing
+                  confident, capable, and creative young minds who are ready to take on future
                   challenges with excellence.
                 </p>
                 <ul className="space-y-3">

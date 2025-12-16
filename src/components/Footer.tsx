@@ -8,6 +8,7 @@ const quickLinks = [
   { name: "About Us", href: "/about" },
   { name: "Courses", href: "/courses" },
   { name: "Teacher Training", href: "/training" },
+  { name: "Franchise", href: "/franchise" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -37,15 +38,15 @@ export const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="inline-block"
               >
                 <img src={logo} alt="Fairfin Eduhub Academy" className="h-20 w-auto mb-4 bg-white rounded-lg p-2 hover:opacity-90 transition-opacity" />
               </Link>
               <p className="text-primary-foreground/80 text-sm mb-4">
-                Empowering young minds with quality skill development programs. 
+                Empowering young minds with quality skill development programs.
                 ISO 9001:2015 certified institution for ages 4-14.
               </p>
               <p className="text-sm italic text-accent">"Learn, Explore, Achieve"</p>
