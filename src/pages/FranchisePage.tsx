@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { motion } from "framer-motion";
-import { Building, TrendingUp, Users, Shield, Award, BarChart, CheckCircle, ArrowRight, Briefcase, DollarSign, MapPin, Handshake } from "lucide-react";
+import { Building, TrendingUp, Users, Shield, Award, BarChart, CheckCircle, ArrowRight, Briefcase, DollarSign, MapPin, Handshake, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -74,54 +74,81 @@ const franchiseOwners = [
         name: "Mrs. Gowthami",
         location: "Mangadu, Chennai",
         initials: "G",
-        image: "/src/assets/1.jpg", // Placeholder - using existing asset or similar if available, else standard div
-        address: "15b2, Sri Krishna Nagar street, Mangadu-600122"
+        image: "/src/assets/1.jpg",
+        address: "15b2, Sri Krishna Nagar street, Mangadu-600122",
+        phone: "+91 98765 43210",
+        email: "gowthami@example.com",
+        joinedDate: "2022"
     },
     {
-        name: "Mrs. ",
+        name: "Mrs. Nithya Menon",
         location: "Kotturpuram, Chennai",
         initials: "NM",
-        image: "/src/assets/2.jpg", // Placeholder
-        address: "No 1, South Lock street, Kotturpuram, Chennai - 600085"
+        image: "/src/assets/2.jpg",
+        address: "No 1, South Lock street, Kotturpuram, Chennai - 600085",
+        phone: "+91 98765 43211",
+        email: "nithya@example.com",
+        joinedDate: "2021"
     },
     {
         name: "Mrs. J. Nithya",
         location: "Madurai",
         initials: "JN",
-        image: "/src/assets/3.jpg", // Placeholder - using existing asset or similar if available, else standard div
-        address: "27, Aasath street, New meenakshi nagar, Powerhouse back side, Madurai"
+        image: "/src/assets/3.jpg",
+        address: "27, Aasath street, New meenakshi nagar, Powerhouse back side, Madurai",
+        phone: "+91 98765 43212",
+        email: "j.nithya@example.com",
+        joinedDate: "2023"
     },
     {
-        name: "Mrs. ",
+        name: "Mrs. Radha Krishnan",
         location: "Trichy",
         initials: "RK",
         image: "/src/assets/4.jpg",
-        address: "Anna Nagar, Trichy 620028"
+        address: "Anna Nagar, Trichy 620028",
+        phone: "+91 98765 43213",
+        email: "radha@example.com",
+        joinedDate: "2022"
     },
     {
-        name: "Mrs. ",
+        name: "Mrs. Priya Sundar",
         location: "Parivakkam, Chennai",
         initials: "PS",
         image: "/src/assets/5.jpg",
-        address: "Plot No. 36, Banaveduthottam, Parivakkam - 600056"
+        address: "Plot No. 36, Banaveduthottam, Parivakkam - 600056",
+        phone: "+91 98765 43214",
+        email: "priya@example.com",
+        joinedDate: "2023"
     },
     {
-        name: "Mrs.",
+        name: "Mrs. Rekha Kumar",
         location: "Paraniputhur, Kancheepuram",
         initials: "RK",
         image: "/src/assets/6.jpg",
-        address: "No. 6/192, Subburaya Nagar, Paraniputhur-600122"
+        address: "No. 6/192, Subburaya Nagar, Paraniputhur-600122",
+        phone: "+91 98765 43215",
+        email: "rekha@example.com",
+        joinedDate: "2022"
     },
     {
         name: "Mrs. Kalpana",
         location: "Raja Annamalaipuram, Chennai",
         initials: "K",
-        image: "/src/assets/6.jpg",
-        address: "19, RA Puram, Thideer Nagar, Raja Annamalaipuram, Chennai, TamilNadu - 600028"
+        image: "/src/assets/7.jpg",
+        address: "19, RA Puram, Thideer Nagar, Raja Annamalaipuram, Chennai, TamilNadu - 600028",
+        phone: "+91 98765 43216",
+        email: "kalpana@example.com",
+        joinedDate: "2021"
     },
 ];
 
 const FranchisePage = () => {
+    const handleContactOwner = (owner) => {
+        // In a real application, this would open a contact modal or form
+        console.log('Contact owner:', owner);
+        // You can implement a modal or redirect to enquiry form
+    };
+
     return (
         <div className="min-h-screen">
             <Navbar />
@@ -158,6 +185,8 @@ const FranchisePage = () => {
                             Join the Fairfin Eduhub Academy family and build a successful education business.
                             Together, let's shape the future of the next generation.
                         </motion.p>
+
+
                     </div>
                 </section>
 
@@ -219,36 +248,128 @@ const FranchisePage = () => {
                             </p>
                         </motion.div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-[90rem] mx-auto items-start">
                             {franchiseOwners.map((owner, index) => (
                                 <motion.div
-                                    key={owner.name}
+                                    key={owner.name + owner.location}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="bg-card rounded-3xl overflow-hidden border border-border/50 shadow-soft hover:shadow-elevated transition-all group"
+                                    className="group"
                                 >
-                                    <div className="aspect-[3/4] bg-muted relative overflow-hidden">
-                                        <img
-                                            src={owner.image}
-                                            alt={owner.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </div>
-                                    <div className="p-8">
-                                        <h3 className="text-2xl font-bold text-foreground mb-2">{owner.name}</h3>
-                                        <div className="flex items-start gap-3 text-muted-foreground">
-                                            <MapPin className="w-5 h-5 flex-shrink-0 mt-1 text-primary" />
-                                            <p className="leading-relaxed">
-                                                <span className="font-semibold text-foreground block mb-1">{owner.location}</span>
-                                                {owner.address}
-                                            </p>
+                                    <div className="bg-card rounded-3xl overflow-hidden border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-300 h-full flex flex-col">
+                                        {/* Image Container with Fallback */}
+                                        <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
+                                            {owner.image ? (
+                                                <img
+                                                    src={owner.image}
+                                                    alt={`${owner.name} - Franchise Owner in ${owner.location}`}
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    onError={(e) => {
+                                                        const target = e.target as HTMLImageElement;
+                                                        target.style.display = 'none';
+                                                        const fallback = target.parentElement?.querySelector('.fallback') as HTMLElement;
+                                                        if (fallback) fallback.style.display = 'flex';
+                                                    }}
+                                                />
+                                            ) : null}
+                                            {/* Fallback Avatar */}
+                                            <div
+                                                className={`fallback w-full h-full flex items-center justify-center ${!owner.image ? 'flex' : 'hidden'}`}
+                                            >
+                                                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                                                    <span className="text-5xl font-bold text-primary-foreground">
+                                                        {owner.initials}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="p-6 flex-1 flex flex-col">
+                                            <div className="mb-4">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <h3 className="text-xl font-bold text-foreground">
+                                                        {owner.name.trim() || `Franchise Owner`}
+                                                    </h3>
+                                                    <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md">
+                                                        Owner
+                                                    </span>
+                                                </div>
+
+
+                                            </div>
+                                            <div className="mt-auto pt-4 border-t border-border/50">
+                                                <div className="flex items-start gap-2 mb-4">
+                                                    <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
+                                                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                                                        {owner.address}
+                                                    </p>
+                                                </div>
+
+                                                {/* Contact Info (Collapsed by default) */}
+                                                <details className="group/details">
+                                                    <summary className="text-sm font-medium text-primary cursor-pointer hover:text-primary/80 flex items-center justify-between mb-2">
+                                                        <span>Contact Details</span>
+                                                        <ArrowRight className="w-4 h-4 group-open/details:rotate-90 transition-transform" />
+                                                    </summary>
+                                                    <div className="space-y-2 pt-2">
+                                                        <div className="flex items-center gap-2 text-sm">
+                                                            <Phone className="w-3.5 h-3.5 text-muted-foreground" />
+                                                            <span className="text-muted-foreground">{owner.phone}</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-2 text-sm">
+                                                            <Mail className="w-3.5 h-3.5 text-muted-foreground" />
+                                                            <span className="text-muted-foreground truncate">{owner.email}</span>
+                                                        </div>
+                                                    </div>
+                                                </details>
+
+
+                                            </div>
                                         </div>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
+
+                        {/* Stats Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mt-20 pt-12 border-t border-border/50"
+                        >
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-primary mb-2">{franchiseOwners.length}+</div>
+                                    <div className="text-sm text-muted-foreground">Franchise Partners</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-accent mb-2">6+</div>
+                                    <div className="text-sm text-muted-foreground">Cities Across TN</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                                    <div className="text-sm text-muted-foreground">Support Satisfaction</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-bold text-accent mb-2">5+</div>
+                                    <div className="text-sm text-muted-foreground">Years Experience</div>
+                                </div>
+                            </div>
+
+                            <div className="text-center mt-10">
+                                <Link to="/franchise-enquiry">
+                                    <Button className="h-12 px-8 gradient-green text-primary-foreground hover:opacity-90 font-semibold rounded-xl">
+                                        Join Our Growing Network
+                                        <ArrowRight className="w-5 h-5 ml-2" />
+                                    </Button>
+                                </Link>
+                            </div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -265,8 +386,8 @@ const FranchisePage = () => {
                                 <h3 className="text-3xl font-bold mb-8 text-foreground">Franchise Requirements</h3>
                                 <div className="space-y-6">
                                     {requirements.map((req, index) => (
-                                        <div key={req.title} className="flex gap-4 p-6 bg-card rounded-xl border border-border/50">
-                                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <div key={req.title} className="flex gap-4 p-6 bg-card rounded-xl border border-border/50 hover:border-primary/30 transition-colors">
+                                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                                                 <req.icon className="w-6 h-6 text-primary" />
                                             </div>
                                             <div>
@@ -293,7 +414,7 @@ const FranchisePage = () => {
                                 </p>
                                 <ul className="space-y-4">
                                     {support.map((item, index) => (
-                                        <li key={index} className="flex items-center gap-3">
+                                        <li key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                                             <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                                             <span className="text-foreground/80 font-medium">{item}</span>
                                         </li>
@@ -312,10 +433,12 @@ const FranchisePage = () => {
                     </div>
                 </section>
 
+
+
                 <CTASection />
             </main>
             <Footer />
-        </div>
+        </div >
     );
 };
 
