@@ -300,7 +300,7 @@ const FranchisePage = () => {
                                     ))}
                                 </ul>
                                 <div className="mt-10">
-                                    <Link to="/contact">
+                                    <Link to="/franchise-enquiry">
                                         <Button className="w-full h-12 gradient-green text-primary-foreground hover:opacity-90 font-semibold text-lg">
                                             Become a Partner
                                             <ArrowRight className="w-5 h-5 ml-2" />

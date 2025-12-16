@@ -84,12 +84,12 @@ export const Navbar = () => {
 
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              to="/contact"
+              to="/franchise-enquiry"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="inline-block"
             >
               <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Quick Enquiry
+                Franchise Enquiry
               </Button>
             </Link>
             <Link

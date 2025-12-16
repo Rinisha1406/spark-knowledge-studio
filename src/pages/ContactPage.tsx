@@ -52,6 +52,7 @@ const locations = [
 ];
 
 const courses = [
+  "Franchise Enquiry",
   "Abacus",
   "Phonics",
   "Vedic Maths",
@@ -227,14 +228,14 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-semibold mb-2 block text-foreground">Course Interested In</label>
+                      <label className="text-sm font-semibold mb-2 block text-foreground">Interested In</label>
                       <div className="relative">
                         <select
                           value={formData.course}
                           onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                           className="w-full h-14 px-4 pr-12 rounded-md border border-input bg-background text-foreground text-base appearance-none cursor-pointer"
                         >
-                          <option value="">Select a course</option>
+                          <option value="">Select an option</option>
                           {courses.map((course) => (
                             <option key={course} value={course}>{course}</option>
                           ))}
