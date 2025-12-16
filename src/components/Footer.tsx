@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Instagram, Facebook, ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const quickLinks = [
   { name: "Home", href: "#home" },
-  { name: "About Us", href: "#about" },
-  { name: "Courses", href: "#courses" },
-  { name: "Teacher Training", href: "#training" },
-  { name: "Contact", href: "#contact" },
+  { name: "About Us", href: "/about" },
+  { name: "Courses", href: "/courses" },
+  { name: "Teacher Training", href: "/training" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const courses = [
@@ -36,7 +37,13 @@ export const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <img src={logo} alt="Fairfin Eduhub Academy" className="h-20 w-auto mb-4 bg-white rounded-lg p-2" />
+              <Link 
+                to="/" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-block"
+              >
+                <img src={logo} alt="Fairfin Eduhub Academy" className="h-20 w-auto mb-4 bg-white rounded-lg p-2 hover:opacity-90 transition-opacity" />
+              </Link>
               <p className="text-primary-foreground/80 text-sm mb-4">
                 Empowering young minds with quality skill development programs. 
                 ISO 9001:2015 certified institution for ages 4-14.
@@ -55,12 +62,13 @@ export const Footer = () => {
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.name === 'Home' ? '/' : link.href}
                       className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -77,12 +85,13 @@ export const Footer = () => {
               <ul className="space-y-2">
                 {courses.map((course) => (
                   <li key={course}>
-                    <a
-                      href="#courses"
-                      className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
+                    <Link
+                      to="/courses"
+                      className="text-primary-foreground/70 hover:text-accent transition-colors text-sm block"
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                       {course}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

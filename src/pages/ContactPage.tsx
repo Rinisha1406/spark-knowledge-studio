@@ -397,7 +397,8 @@ const ContactPage = () => {
               <p className="text-muted-foreground mb-4">
                 Have more questions? We're happy to help!
               </p>
-              <Link to="/contact">
+              <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-block">
                 <Button size="lg" className="gradient-green text-primary-foreground hover:opacity-90">
                   Contact Us
                   <ArrowRight className="w-5 h-5 ml-2" />

@@ -2,30 +2,23 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import { 
-  Calculator, 
-  BookOpenText, 
-  BrainCircuit, 
-  PenTool, 
-  Languages, 
-  MessageCircle,
-  MessagesSquare,
-  GraduationCap,
   CheckCircle,
   ArrowRight,
   Clock,
   Users,
   Star,
-  Sparkles
+  Sparkles,
+  GraduationCap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const courses = [
   {
-    icon: Calculator,
     title: "Abacus",
     description: "Level-wise structured program for mental math excellence. Watch your child solve complex calculations mentally!",
+    image: "/src/assets/abacus.jpg",
     features: [
       "Improves mental math & calculation speed",
       "Enhances focus, memory & concentration",
@@ -40,9 +33,9 @@ const courses = [
     popular: true
   },
   {
-    icon: BookOpenText,
     title: "Phonics",
     description: "Systematic reading program that builds a strong foundation for reading and pronunciation skills.",
+    image: "/src/assets/phonics.jpg",
     features: [
       "Improves pronunciation & blending skills",
       "Develops reading fluency step-by-step",
@@ -57,9 +50,9 @@ const courses = [
     popular: true
   },
   {
-    icon: BrainCircuit,
     title: "Vedic Maths",
     description: "Ancient Indian mathematics techniques for lightning-fast mental calculations and problem-solving.",
+    image: "/src/assets/vedic_maths.jpg",
     features: [
       "Shortcut techniques for fast calculation",
       "Helps in school & competitive exams",
@@ -74,9 +67,9 @@ const courses = [
     popular: true
   },
   {
-    icon: PenTool,
     title: "Handwriting",
     description: "Transform your child's handwriting from messy to beautiful with our structured improvement program.",
+    image: "/src/assets/handwriting.jpg",
     features: [
       "Cursive & print handwriting improvement",
       "Focus on letter formation & spacing",
@@ -91,9 +84,9 @@ const courses = [
     popular: false
   },
   {
-    icon: Languages,
     title: "Hindi",
     description: "Comprehensive Hindi language learning program covering reading, writing, grammar, and conversation.",
+    image: "/src/assets/hindi.jpg",
     features: [
       "Level-wise structured curriculum",
       "Reading, writing & grammar mastery",
@@ -108,9 +101,9 @@ const courses = [
     popular: false
   },
   {
-    icon: MessageCircle,
     title: "Spoken English",
     description: "Build confidence in English communication with our comprehensive spoken English program.",
+    image: "/src/assets/spoken_english.jpg",
     features: [
       "Daily use English practice",
       "Grammar & vocabulary building",
@@ -125,9 +118,9 @@ const courses = [
     popular: false
   },
   {
-    icon: MessagesSquare,
     title: "Spoken Hindi",
     description: "Practical Hindi communication skills for daily conversation and effective communication.",
+    image: "/src/assets/spoken_hindi.jpg",
     features: [
       "Practical spoken Hindi skills",
       "Daily communication focus",
@@ -142,9 +135,9 @@ const courses = [
     popular: false
   },
   {
-    icon: GraduationCap,
     title: "Mathematics",
     description: "School syllabus support with concept clarity and regular practice for academic excellence.",
+    image: "/src/assets/mathematics.jpg",
     features: [
       "Aligned with school syllabus",
       "Concepts explained with examples",
@@ -184,6 +177,7 @@ const processSteps = [
 ];
 
 const CoursesPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -251,7 +245,11 @@ const CoursesPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group h-full relative"
+                  className="group h-full relative cursor-pointer"
+                  onClick={() => navigate(`/courses/${course.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/courses/${course.title.toLowerCase().replace(/\s+/g, '-')}`)}
                 >
                   {/* Popular badge */}
                   {course.popular && (
@@ -264,19 +262,36 @@ const CoursesPage = () => {
                   )}
                   
                   <div className="h-full flex flex-col bg-card rounded-3xl border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500 overflow-hidden">
-                    {/* Card Header with Gradient */}
-                    <div className={`p-8 bg-gradient-to-br ${course.color}`}>
-                      <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <course.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{course.title}</h3>
-                      <p className="text-white/85 leading-relaxed">{course.description}</p>
+                    {/* Card Header with Image or Gradient */}
+                    <div className={`h-64 overflow-hidden`}>
+                      {course.image ? (
+                        <img 
+                          src={course.image} 
+                          alt={course.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className={`h-full p-8 bg-gradient-to-br ${course.color}`}>
+                          <h3 className="text-2xl font-bold text-white mb-2">{course.title}</h3>
+                          <p className="text-white/85 leading-relaxed">{course.description}</p>
+                        </div>
+                      )}
                     </div>
+                    {/* Course title and description for image cards */}
+                    {course.image && (
+                      <div className="p-6">
+                        <div className="flex items-center gap-3 mb-3">
+                          
+                          <h3 className="text-xl font-bold text-foreground">{course.title}</h3>
+                        </div>
+                        <p className="text-muted-foreground mb-4">{course.description}</p>
+                      </div>
+                    )}
 
                     {/* Card Body */}
-                    <div className="flex-1 p-8 flex flex-col">
+                    <div className="flex-1 px-6 pb-6 flex flex-col">
                       {/* Course Meta */}
-                      <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-border">
+                      <div className="grid grid-cols-3 gap-3 mb-4 border-b border-border pb-4">
                         <div className="text-center">
                           <Users className="w-5 h-5 mx-auto mb-1 text-primary" />
                           <p className="text-xs text-muted-foreground">{course.ageGroup}</p>

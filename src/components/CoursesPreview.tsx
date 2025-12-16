@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Calculator, BookOpenText, BrainCircuit, PenTool, Languages, MessageCircle, ArrowRight, CheckCircle, Star } from "lucide-react";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const courses = [
   {
@@ -55,6 +55,7 @@ const courses = [
 ];
 
 export const CoursesPreview = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background decoration */}
@@ -105,7 +106,7 @@ export const CoursesPreview = () => {
               
               <div className="h-full p-6 bg-card rounded-2xl border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500 relative overflow-hidden">
                 {/* Hover gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`} />
                 
                 {/* Icon */}
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${course.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
@@ -129,18 +130,14 @@ export const CoursesPreview = () => {
                 </ul>
                 
                 {/* CTA */}
-                <button 
-                  onClick={() => window.location.href = '/#/courses'}
-                  className="w-full"
+                <Button 
+                  variant="outline" 
+                  className="w-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group-hover:border-primary transition-all"
+                  onClick={() => navigate('/courses')}
                 >
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group-hover:border-primary transition-all"
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </button>
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </div>
             </motion.div>
           ))}
@@ -153,12 +150,14 @@ export const CoursesPreview = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Link to="/courses">
-            <Button size="lg" className="h-14 px-10 gradient-green text-primary-foreground hover:opacity-90 group text-base font-semibold">
-              View All 8 Courses
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+          <Button 
+            size="lg" 
+            className="h-14 px-10 gradient-green text-primary-foreground hover:opacity-90 group text-base font-semibold"
+            onClick={() => navigate('/courses')}
+          >
+            View All 8 Courses
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Button>
           <p className="mt-4 text-sm text-muted-foreground">
             Including Mathematics, Spoken Hindi & more
           </p>
