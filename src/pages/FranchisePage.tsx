@@ -71,47 +71,54 @@ const support = [
 
 const franchiseOwners = [
     {
-        name: "Mrs. Priya Sharma",
-        location: "Anna Nagar, Chennai",
-        initials: "PS",
+        name: "Mrs. Gowthami",
+        location: "Mangadu, Chennai",
+        initials: "G",
         image: "/src/assets/1.jpg", // Placeholder - using existing asset or similar if available, else standard div
-        address: "Plot No. 45, 2nd Avenue, Anna Nagar East, Chennai - 600102"
+        address: "15b2, Sri Krishna Nagar street, Mangadu-600122"
     },
     {
-        name: "Mr. Rajesh Kumar",
-        location: "Velachery, Chennai",
-        initials: "RK",
+        name: "Mrs. ",
+        location: "Kotturpuram, Chennai",
+        initials: "NM",
         image: "/src/assets/2.jpg", // Placeholder
-        address: "No. 12, 100 Feet Road, Velachery, Chennai - 600042"
+        address: "No 1, South Lock street, Kotturpuram, Chennai - 600085"
     },
     {
-        name: "Mrs. Priya Sharma",
-        location: "Anna Nagar, Chennai",
-        initials: "PS",
+        name: "Mrs. J. Nithya",
+        location: "Madurai",
+        initials: "JN",
         image: "/src/assets/3.jpg", // Placeholder - using existing asset or similar if available, else standard div
-        address: "Plot No. 45, 2nd Avenue, Anna Nagar East, Chennai - 600102"
+        address: "27, Aasath street, New meenakshi nagar, Powerhouse back side, Madurai"
     },
     {
-        name: "Mr. Rajesh Kumar",
-        location: "Velachery, Chennai",
+        name: "Mrs. ",
+        location: "Trichy",
         initials: "RK",
         image: "/src/assets/4.jpg",
-        address: "No. 12, 100 Feet Road, Velachery, Chennai - 600042"
+        address: "Anna Nagar, Trichy 620028"
     },
     {
-        name: "Mrs. Priya Sharma",
-        location: "Anna Nagar, Chennai",
+        name: "Mrs. ",
+        location: "Parivakkam, Chennai",
         initials: "PS",
         image: "/src/assets/5.jpg",
-        address: "Plot No. 45, 2nd Avenue, Anna Nagar East, Chennai - 600102"
+        address: "Plot No. 36, Banaveduthottam, Parivakkam - 600056"
     },
     {
-        name: "Mr. Rajesh Kumar",
-        location: "Velachery, Chennai",
+        name: "Mrs.",
+        location: "Paraniputhur, Kancheepuram",
         initials: "RK",
         image: "/src/assets/6.jpg",
-        address: "No. 12, 100 Feet Road, Velachery, Chennai - 600042"
-    }
+        address: "No. 6/192, Subburaya Nagar, Paraniputhur-600122"
+    },
+    {
+        name: "Mrs. Kalpana",
+        location: "Raja Annamalaipuram, Chennai",
+        initials: "K",
+        image: "/src/assets/6.jpg",
+        address: "19, RA Puram, Thideer Nagar, Raja Annamalaipuram, Chennai, TamilNadu - 600028"
+    },
 ];
 
 const FranchisePage = () => {
