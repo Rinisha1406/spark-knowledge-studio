@@ -1,12 +1,13 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Send, Building, Phone, Mail, ChevronDown, Clock } from "lucide-react";
+import { Send, Building, Phone, Mail, ChevronDown, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const contactInfo = [
     {
@@ -59,7 +60,7 @@ const FranchiseEnquiryPage = () => {
             <Navbar />
             <main>
                 {/* Hero Banner */}
-                <section className="relative py-20 gradient-hero overflow-hidden">
+                <section className="relative pt-40 lg:pt-64 py-28 gradient-hero overflow-hidden">
                     <div className="absolute inset-0 bg-hero-pattern opacity-20" />
                     <div className="container relative z-10 text-center">
                         <motion.h1

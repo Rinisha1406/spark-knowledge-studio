@@ -22,7 +22,7 @@ const highlights = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-10 lg:pt-40">
       {/* Animated Background */}
       <div className="absolute inset-0 gradient-hero" />
       <div className="absolute inset-0 bg-hero-pattern opacity-20" />

@@ -141,7 +141,7 @@ const TrainingPage = () => {
       <Navbar />
       <main>
         {/* Hero Banner */}
-        <section className="relative py-28 gradient-hero overflow-hidden">
+        <section className="relative pt-32 lg:pt-56 py-28 gradient-hero overflow-hidden">
           <div className="absolute inset-0 bg-hero-pattern opacity-20" />
           <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />

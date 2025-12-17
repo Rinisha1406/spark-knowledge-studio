@@ -69,77 +69,37 @@ const support = [
     "Technical support and software access"
 ];
 
-const franchiseOwners = [
+const franchiseLocations = [
     {
-        name: "Mrs. Gowthami",
-        location: "Mangadu, Chennai",
-        initials: "G",
-        image: "/src/assets/1.jpg",
-        address: "15b2, Sri Krishna Nagar street, Mangadu-600122",
-        phone: "+91 98765 43210",
-        email: "gowthami@example.com",
-        joinedDate: "2022"
+        address: "Kotturpuram, Chennai – 600085"
     },
     {
-        name: "Mrs. Nithya Menon",
-        location: "Kotturpuram, Chennai",
-        initials: "NM",
-        image: "/src/assets/2.jpg",
-        address: "No 1, South Lock street, Kotturpuram, Chennai - 600085",
-        phone: "+91 98765 43211",
-        email: "nithya@example.com",
-        joinedDate: "2021"
+        address: "Mangadu – 600122"
     },
     {
-        name: "Mrs. J. Nithya",
-        location: "Madurai",
-        initials: "JN",
-        image: "/src/assets/3.jpg",
-        address: "27, Aasath street, New meenakshi nagar, Powerhouse back side, Madurai",
-        phone: "+91 98765 43212",
-        email: "j.nithya@example.com",
-        joinedDate: "2023"
+        address: "Madurai"
     },
     {
-        name: "Mrs. Radha Krishnan",
-        location: "Trichy",
-        initials: "RK",
-        image: "/src/assets/4.jpg",
-        address: "Anna Nagar, Trichy 620028",
-        phone: "+91 98765 43213",
-        email: "radha@example.com",
-        joinedDate: "2022"
+        address: "Trichy – 620028"
     },
     {
-        name: "Mrs. Priya Sundar",
-        location: "Parivakkam, Chennai",
-        initials: "PS",
-        image: "/src/assets/5.jpg",
-        address: "Plot No. 36, Banaveduthottam, Parivakkam - 600056",
-        phone: "+91 98765 43214",
-        email: "priya@example.com",
-        joinedDate: "2023"
+        address: "Banaveduthottam, Parivakkam – 600056"
     },
     {
-        name: "Mrs. Rekha Kumar",
-        location: "Paraniputhur, Kancheepuram",
-        initials: "RK",
-        image: "/src/assets/6.jpg",
-        address: "No. 6/192, Subburaya Nagar, Paraniputhur-600122",
-        phone: "+91 98765 43215",
-        email: "rekha@example.com",
-        joinedDate: "2022"
+        address: "Paraniputhur – 600122"
     },
     {
-        name: "Mrs. Kalpana",
-        location: "Raja Annamalaipuram, Chennai",
-        initials: "K",
-        image: "/src/assets/7.jpg",
-        address: "19, RA Puram, Thideer Nagar, Raja Annamalaipuram, Chennai, TamilNadu - 600028",
-        phone: "+91 98765 43216",
-        email: "kalpana@example.com",
-        joinedDate: "2021"
+        address: "Raja Annamalaipuram, Chennai – 600028"
     },
+    {
+        address: "Chidambaram – 608001"
+    },
+    {
+        address: "Vijayawada"
+    },
+    {
+        address: "Saudi Arabia"
+    }
 ];
 
 const FranchisePage = () => {
@@ -154,7 +114,7 @@ const FranchisePage = () => {
             <Navbar />
             <main>
                 {/* Hero Banner */}
-                <section className="relative py-28 gradient-hero overflow-hidden">
+                <section className="relative pt-32 lg:pt-56 py-28 gradient-hero overflow-hidden">
                     <div className="absolute inset-0 bg-hero-pattern opacity-20" />
                     <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
                     <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
@@ -185,8 +145,6 @@ const FranchisePage = () => {
                             Join the Fairfin Eduhub Academy family and build a successful education business.
                             Together, let's shape the future of the next generation.
                         </motion.p>
-
-
                     </div>
                 </section>
 
@@ -241,7 +199,7 @@ const FranchisePage = () => {
                                 Our Partners
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                                Meet Our Franchise Owners
+                                Meet Our Franchise Partner
                             </h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                                 Proud partners who are making a difference in their communities
@@ -249,85 +207,26 @@ const FranchisePage = () => {
                         </motion.div>
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-[90rem] mx-auto items-start">
-                            {franchiseOwners.map((owner, index) => (
+                            {franchiseLocations.map((location, index) => (
                                 <motion.div
-                                    key={owner.name + owner.location}
+                                    key={location.address}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
                                     className="group"
                                 >
-                                    <div className="bg-card rounded-3xl overflow-hidden border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-300 h-full flex flex-col">
-                                        {/* Image Container with Fallback */}
-                                        <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
-                                            {owner.image ? (
-                                                <img
-                                                    src={owner.image}
-                                                    alt={`${owner.name} - Franchise Owner in ${owner.location}`}
-                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    onError={(e) => {
-                                                        const target = e.target as HTMLImageElement;
-                                                        target.style.display = 'none';
-                                                        const fallback = target.parentElement?.querySelector('.fallback') as HTMLElement;
-                                                        if (fallback) fallback.style.display = 'flex';
-                                                    }}
-                                                />
-                                            ) : null}
-                                            {/* Fallback Avatar */}
-                                            <div
-                                                className={`fallback w-full h-full flex items-center justify-center ${!owner.image ? 'flex' : 'hidden'}`}
-                                            >
-                                                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                                                    <span className="text-5xl font-bold text-primary-foreground">
-                                                        {owner.initials}
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
+                                    <div className="bg-card rounded-3xl overflow-hidden border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-300 h-48 flex flex-col">
                                         {/* Content */}
-                                        <div className="p-6 flex-1 flex flex-col">
+                                        <div className="p-6 flex-1 flex flex-col justify-center text-center">
                                             <div className="mb-4">
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <h3 className="text-xl font-bold text-foreground">
-                                                        {owner.name.trim() || `Franchise Owner`}
-                                                    </h3>
-                                                    <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md">
-                                                        Owner
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-                                            <div className="mt-auto pt-4 border-t border-border/50">
-                                                <div className="flex items-start gap-2 mb-4">
-                                                    <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
-                                                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                                                        {owner.address}
-                                                    </p>
-                                                </div>
-
-                                                {/* Contact Info (Collapsed by default) */}
-                                                <details className="group/details">
-                                                    <summary className="text-sm font-medium text-primary cursor-pointer hover:text-primary/80 flex items-center justify-between mb-2">
-                                                        <span>Contact Details</span>
-                                                        <ArrowRight className="w-4 h-4 group-open/details:rotate-90 transition-transform" />
-                                                    </summary>
-                                                    <div className="space-y-2 pt-2">
-                                                        <div className="flex items-center gap-2 text-sm">
-                                                            <Phone className="w-3.5 h-3.5 text-muted-foreground" />
-                                                            <span className="text-muted-foreground">{owner.phone}</span>
-                                                        </div>
-                                                        <div className="flex items-center gap-2 text-sm">
-                                                            <Mail className="w-3.5 h-3.5 text-muted-foreground" />
-                                                            <span className="text-muted-foreground truncate">{owner.email}</span>
-                                                        </div>
-                                                    </div>
-                                                </details>
-
-
+                                                <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
+                                                <h3 className="text-lg font-bold text-foreground mb-2">
+                                                    {location.address}
+                                                </h3>
+                                                <p className="text-sm text-primary font-medium">
+                                                    Unit franchise of fairfin eduhub
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +243,7 @@ const FranchisePage = () => {
                         >
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
                                 <div className="text-center">
-                                    <div className="text-4xl font-bold text-primary mb-2">{franchiseOwners.length}+</div>
+                                    <div className="text-4xl font-bold text-primary mb-2">{franchiseLocations.length}+</div>
                                     <div className="text-sm text-muted-foreground">Franchise Partners</div>
                                 </div>
                                 <div className="text-center">

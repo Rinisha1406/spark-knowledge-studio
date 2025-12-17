@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, Facebook, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "./ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -23,8 +23,8 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -35,113 +35,211 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="hidden lg:block gradient-hero text-primary-foreground py-2">
-        <div className="container flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <a href="tel:+919092592817" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Phone className="w-4 h-4" />
-              <span>+91 9092592817</span>
-            </a>
-            <a href="mailto:fairfineduhubacademy@outlook.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
+        {/* Top Bar with Email and Social Icons - Desktop Only - Fixed */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-[#008A61] text-white py-2">
+          <div className="container flex justify-between items-center">
+            <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              <span>fairfineduhubacademy@outlook.com</span>
+              <span className="text-sm font-medium">contact@brainbay.in</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="#" aria-label="Facebook" className="hover:text-accent transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="#" aria-label="Instagram" className="hover:text-accent transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="#" aria-label="YouTube" className="hover:text-accent transition-colors">
+                <Youtube className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Header - Desktop - Fixed with top margin for top bar */}
+        <motion.nav
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className={`fixed top-8 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-soft" : "bg-white"
+            }`}
+        >
+          <div className="container flex items-center justify-between py-4">
+            {/* Phone Number - Left */}
+            <a href="tel:+919941076103" className="flex items-center gap-2 border border-[#008A61] rounded-full p-2 hover:bg-[#FF9800] hover:bg-opacity-10 transition-colors">
+              <Phone className="w-5 h-5 text-[#008A61]" />
+              <span className="text-lg font-semibold text-[#008A61]">+91 9941076103</span>
             </a>
-          </div>
-          <span className="opacity-90">ISO 9001:2015 Certified</span>
-        </div>
-      </div>
 
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-soft" : "bg-background"
-          }`}
-      >
-        <div className="container flex items-center justify-between py-3">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Fairfin Eduhub Academy" className="h-16 w-auto" />
-          </Link>
+            {/* Logo - Center */}
+            <Link to="/" className="flex flex-col items-center justify-center">
+              <img src={logo} alt="The Brainbay" className="h-20 w-auto" />
+              <div className="text-center mt-1">
+                <p className="text-sm font-medium text-gray-700">Exploring young minds</p>
+              </div>
+            </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={() => {
-                  if (location.pathname === link.href) {
-                    scrollToTop();
-                  }
-                }}
-                className={`font-medium transition-colors relative group ${location.pathname === link.href ? "text-primary" : "text-foreground/80 hover:text-primary"
-                  }`}
-              >
-                {link.name}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-                  }`} />
+            {/* Buttons - Right */}
+            <div className="flex items-center gap-3">
+              <Link to="/contact">
+                <Button
+                  size="sm"
+                  className="bg-[#008A61] text-white rounded-full shadow-soft hover:opacity-90 px-4"
+                >
+                  Enroll Now
+                </Button>
               </Link>
-            ))}
+              <Link to="/franchise-enquiry">
+                <Button
+                  size="sm"
+                  className="bg-[#E5B624] text-white rounded-full shadow-soft hover:opacity-90 px-4"
+                >
+                  Franchise Enquiry
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          <div className="hidden lg:flex items-center gap-4">
-            <Link
-              to="/franchise-enquiry"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-block"
-            >
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Franchise Enquiry
-              </Button>
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-block"
-            >
-              <Button size="sm" className="gradient-green text-primary-foreground shadow-soft hover:opacity-90">
-                Enroll Now
-              </Button>
-            </Link>
-          </div>
-
-          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 text-foreground">
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-background border-t"
-            >
-              <div className="container py-4 flex flex-col gap-4">
+          {/* Navigation Menu - Bottom */}
+          <div className="border-t border-gray-200">
+            <div className="container">
+              <div className="flex items-center justify-center gap-8 py-3">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.href}
                     onClick={() => {
-                      setIsOpen(false);
                       if (location.pathname === link.href) {
                         scrollToTop();
                       }
                     }}
-                    className={`font-medium py-2 ${location.pathname === link.href ? "text-primary" : "text-foreground/80"}`}
+                    className={`font-medium transition-colors relative group ${location.pathname === link.href ? "text-primary" : "text-gray-700 hover:text-primary"
+                      }`}
                   >
                     {link.name}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      }`} />
                   </Link>
                 ))}
-                <div className="flex flex-col gap-3 pt-4 border-t">
-                  <Link to="/contact" onClick={() => setIsOpen(false)}>
-                    <Button className="w-full gradient-green text-primary-foreground">Enroll Now</Button>
-                  </Link>
-                </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+            </div>
+          </div>
+        </motion.nav>
+      </div>
+
+        {/* Mobile Layout */}
+      <div className="lg:hidden">
+        {/* Mobile Top Bar - Green */}
+        <div className="bg-[#008A61] py-2 px-4 flex flex-col items-center justify-center text-white">
+          <div className="flex items-center gap-2 mb-1">
+            <Mail className="w-4 h-4" />
+            <span className="text-sm">contact@brainbay.in</span>
+          </div>
+          <div className="flex gap-3">
+            <a href="#" aria-label="Facebook" className="hover:text-accent transition-colors">
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a href="#" aria-label="Instagram" className="hover:text-accent transition-colors">
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Main Header - Mobile */}
+        <motion.nav
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-soft" : "bg-white"
+            }`}
+        >
+          <div className="container flex flex-col items-center py-4 gap-4">
+            {/* Mobile Phone Number */}
+              <div className="flex flex-col items-center py-2">
+                <a
+                  href="tel:+919941076103"
+                  className="flex items-center gap-2 border-2 rounded-full p-2 transition-colors
+                            border-[#008A61] hover:bg-[#008A61] hover:bg-opacity-10"
+                >
+                  <Phone className="w-5 h-5 text-[#008A61]" />
+                  <span className="text-lg font-semibold text-[#008A61]">
+                    +91 9941076103
+                  </span>
+                </a>
+              </div>
+
+            {/* Logo - Mobile */}
+            <Link to="/" className="flex flex-col items-center justify-center">
+              <img src={logo} alt="The Brainbay" className="h-28 w-auto" />
+              <div className="text-center mt-1">
+                <p className="text-sm font-medium text-gray-700">Exploring young minds</p>
+                <p className="text-xs text-gray-600">AN ISO 9001:2015 CERTIFIED COMPANY</p>
+              </div>
+            </Link>
+
+            {/* Mobile Buttons - Stacked Vertically */}
+            <div className="flex flex-col items-center gap-3 w-full max-w-xs px-4">
+              <Link to="/contact">
+                <Button
+                  size="sm"
+                  className="bg-[#008A61] text-white rounded-full shadow-soft hover:opacity-90 px-4"
+                >
+                  Enroll Now
+                </Button>
+              </Link>
+              <Link to="/franchise-enquiry">
+                <Button
+                  size="sm"
+                  className="bg-[#E5B624] text-white rounded-full shadow-soft hover:opacity-90 px-4"
+                >
+                  Franchise Enquiry
+                </Button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              className="bg-[#8BC34A] text-white p-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Navigation Menu - Mobile - Only show when menu is open */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="border-t border-gray-200"
+              >
+                <div className="container">
+                  <div className="flex flex-wrap items-center justify-center gap-4 py-3">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (location.pathname === link.href) {
+                            scrollToTop();
+                          }
+                        }}
+                        className={`font-medium transition-colors text-sm ${location.pathname === link.href ? "text-primary" : "text-gray-700 hover:text-primary"
+                          }`}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.nav>
+      </div>
     </>
   );
 };
