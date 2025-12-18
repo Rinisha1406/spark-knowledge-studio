@@ -5,9 +5,9 @@ import { Send, Building, Phone, Mail, ChevronDown, Clock, ArrowRight } from "luc
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const contactInfo = [
     {
@@ -38,6 +38,7 @@ const contactInfo = [
 
 const FranchiseEnquiryPage = () => {
     const { toast } = useToast();
+    const location = useLocation();
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -45,6 +46,19 @@ const FranchiseEnquiryPage = () => {
         course: "Franchise Enquiry",
         message: ""
     });
+
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.getElementById(location.hash.substring(1));
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -110,7 +124,7 @@ const FranchiseEnquiryPage = () => {
                     </div>
                 </section>
 
-                <section className="py-20">
+                <section className="py-20" id="partner-application">
                     <div className="container max-w-4xl">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

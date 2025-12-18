@@ -23,34 +23,31 @@ const highlights = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-10 lg:pt-40">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-10 lg:pt-20">
       {/* Animated Background */}
       <div className="absolute inset-0 gradient-hero" />
       <div className="absolute inset-0 bg-hero-pattern opacity-20" />
-      
+
       {/* Animated decorative elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-accent/20 rounded-full animate-float blur-3xl" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/20 rounded-full animate-float-delayed blur-3xl" />
       <div className="absolute top-1/2 right-1/4 w-40 h-40 bg-primary-foreground/10 rounded-full animate-pulse-soft blur-2xl" />
-      
+
       {/* Floating icons */}
-      <motion.div 
+      <motion.div
         className="absolute top-32 right-[20%] hidden lg:block"
         animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
-        <div className="w-16 h-16 rounded-2xl gradient-accent flex items-center justify-center shadow-elevated">
-          <Sparkles className="w-8 h-8 text-accent-foreground" />
-        </div>
       </motion.div>
 
       <div className="container relative z-10 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content - About Page Design */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8, delay: 0.3 }} 
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
             <div className="relative bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 rounded-3xl p-10 border border-border/50">
@@ -75,11 +72,11 @@ export const Hero = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
               {stats.map((stat, index) => (
-                <motion.div 
-                  key={stat.label} 
-                  initial={{ opacity: 0, y: 20 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  transition={{ delay: 0.6 + index * 0.1 }} 
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
                   className="bg-primary-foreground/10 backdrop-blur-md rounded-xl p-4 text-center border border-primary-foreground/10 hover:bg-primary-foreground/15 transition-colors"
                 >
                   <stat.icon className="w-6 h-6 mx-auto mb-2 text-accent" />
@@ -91,17 +88,17 @@ export const Hero = () => {
           </motion.div>
 
           {/* Right Content - Original Hero Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8 }} 
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-primary-foreground"
           >
             {/* Badge */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.2 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8 border border-primary-foreground/20"
             >
               <Award className="w-5 h-5 text-accent" />
@@ -110,10 +107,10 @@ export const Hero = () => {
             </motion.div>
 
             {/* Main Heading */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.3 }} 
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6"
             >
               Empowering <br />
@@ -139,24 +136,24 @@ export const Hero = () => {
             </motion.h1>
 
             {/* Description */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.4 }} 
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
               className="text-lg md:text-xl opacity-90 mb-8 max-w-xl leading-relaxed"
             >
               Premium education programs designed for children ages 4-14. We nurture young minds with proven teaching methods and certified trainers.
             </motion.p>
 
             {/* Highlights Tags */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
               className="flex flex-wrap gap-2 mb-8"
             >
               {highlights.map((item, i) => (
-                <span 
+                <span
                   key={i}
                   className="px-3 py-1.5 text-sm bg-primary-foreground/10 rounded-full border border-primary-foreground/20"
                 >
@@ -166,10 +163,10 @@ export const Hero = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.5 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
               className="flex flex-wrap gap-4"
             >
               <Link to="/courses">
@@ -178,23 +175,13 @@ export const Hero = () => {
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="h-14 px-8 border-2 border-primary-foreground/30 text-primary-foreground bg-primary-foreground/5 hover:bg-primary-foreground/10 text-base font-semibold"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  Book Free Demo
-                </Button>
-              </Link>
             </motion.div>
 
             {/* Tagline */}
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ delay: 0.7 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
               className="mt-10 flex items-center gap-4"
             >
               <p className="text-xl font-heading italic text-accent font-medium">

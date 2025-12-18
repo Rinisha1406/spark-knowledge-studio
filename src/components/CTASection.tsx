@@ -16,7 +16,7 @@ export const CTASection = () => {
       {/* Background */}
       <div className="absolute inset-0 gradient-hero" />
       <div className="absolute inset-0 bg-hero-pattern opacity-20" />
-      
+
       {/* Decorative elements */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
@@ -30,7 +30,7 @@ export const CTASection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -39,20 +39,20 @@ export const CTASection = () => {
               <Calendar className="w-4 h-4 text-accent" />
               Enroll Today
             </motion.span>
-            
+
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
               Ready to Give Your Child the Best Start in Life?
             </h2>
-            
+
             <p className="text-xl text-primary-foreground/80 mb-8 leading-relaxed">
-              Join hundreds of families who trust Fairfin Eduhub Academy for their children's skill development. 
+              Join hundreds of families who trust Fairfin Eduhub Academy for their children's skill development.
               Book a free demo class today and see the difference!
             </p>
-            
+
             {/* Benefits List */}
             <ul className="grid sm:grid-cols-2 gap-4 mb-10">
               {benefits.map((benefit, index) => (
-                <motion.li 
+                <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -65,15 +65,9 @@ export const CTASection = () => {
                 </motion.li>
               ))}
             </ul>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <Button size="lg" className="h-14 px-8 gradient-accent text-accent-foreground hover:opacity-90 text-lg font-bold group shadow-elevated">
-                  Book Free Demo
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
               <a href="tel:+919092592817">
                 <Button size="lg" variant="outline" className="h-14 px-8 border-2 border-primary-foreground/30 text-primary-foreground bg-transparent hover:bg-primary-foreground/10 text-lg">
                   <Phone className="w-5 h-5 mr-2" />

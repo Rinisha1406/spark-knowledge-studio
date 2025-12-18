@@ -261,7 +261,7 @@ const FranchisePage = () => {
                             </div>
 
                             <div className="text-center mt-10">
-                                <Link to="/franchise-enquiry">
+                                <Link to="/franchise-enquiry#partner-application">
                                     <Button className="h-12 px-8 gradient-green text-primary-foreground hover:opacity-90 font-semibold rounded-xl">
                                         Join Our Growing Network
                                         <ArrowRight className="w-5 h-5 ml-2" />
@@ -320,7 +320,7 @@ const FranchisePage = () => {
                                     ))}
                                 </ul>
                                 <div className="mt-10">
-                                    <Link to="/franchise-enquiry">
+                                    <Link to="/franchise-enquiry#partner-application">
                                         <Button className="w-full h-12 gradient-green text-primary-foreground hover:opacity-90 font-semibold text-lg">
                                             Become a Partner
                                             <ArrowRight className="w-5 h-5 ml-2" />

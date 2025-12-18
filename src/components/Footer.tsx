@@ -87,7 +87,7 @@ export const Footer = () => {
                 {courses.map((course) => (
                   <li key={course}>
                     <Link
-                      to="/courses"
+                      to={`/courses#${course.toLowerCase().replace(/\s+/g, '-')}`}
                       className="text-primary-foreground/70 hover:text-accent transition-colors text-sm block"
                       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >

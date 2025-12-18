@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { EnrollmentPopup } from "@/components/EnrollmentPopup";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   CheckCircle,
   ArrowRight,
@@ -15,13 +15,43 @@ import {
   BookOpen
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// Import images
+import abacusImg from "@/assets/abacus.jpg";
+import phonicsImg from "@/assets/phonics.jpg";
+import vedicMathsImg from "@/assets/vedic_maths.jpg";
+import handwritingImg from "@/assets/handwriting.jpg";
+import hindiImg from "@/assets/hindi.jpg";
+import spokenEnglishImg from "@/assets/spoken_english.jpg";
+import spokenHindiImg from "@/assets/spoken_hindi.jpg";
+import mathematicsImg from "@/assets/mathematics.jpg";
+
+const ImageWithLoading = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <div className={`relative overflow-hidden ${className}`}>
+      {isLoading && (
+        <div className="absolute inset-0 bg-muted animate-pulse flex items-center justify-center">
+          <Sparkles className="w-8 h-8 text-muted-foreground/20" />
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+        onLoad={() => setIsLoading(false)}
+      />
+    </div>
+  );
+};
 
 const courses = [
   {
     title: "Abacus",
     description: "Level-wise structured program for mental math excellence. Watch your child solve complex calculations mentally!",
-    image: "/src/assets/abacus.jpg",
+    image: abacusImg,
     features: [
       "Improves mental math & calculation speed",
       "Enhances focus, memory & concentration",
@@ -38,7 +68,7 @@ const courses = [
   {
     title: "Phonics",
     description: "Systematic reading program that builds a strong foundation for reading and pronunciation skills.",
-    image: "/src/assets/phonics.jpg",
+    image: phonicsImg,
     features: [
       "Improves pronunciation & blending skills",
       "Develops reading fluency step-by-step",
@@ -55,7 +85,7 @@ const courses = [
   {
     title: "Vedic Maths",
     description: "Ancient Indian mathematics techniques for lightning-fast mental calculations and problem-solving.",
-    image: "/src/assets/vedic_maths.jpg",
+    image: vedicMathsImg,
     features: [
       "Shortcut techniques for fast calculation",
       "Helps in school & competitive exams",
@@ -72,7 +102,7 @@ const courses = [
   {
     title: "Handwriting",
     description: "Transform your child's handwriting from messy to beautiful with our structured improvement program.",
-    image: "/src/assets/handwriting.jpg",
+    image: handwritingImg,
     features: [
       "Cursive & print handwriting improvement",
       "Focus on letter formation & spacing",
@@ -89,7 +119,7 @@ const courses = [
   {
     title: "Hindi",
     description: "Comprehensive Hindi language learning program covering reading, writing, grammar, and conversation.",
-    image: "/src/assets/hindi.jpg",
+    image: hindiImg,
     features: [
       "Level-wise structured curriculum",
       "Reading, writing & grammar mastery",
@@ -106,7 +136,7 @@ const courses = [
   {
     title: "Spoken English",
     description: "Build confidence in English communication with our comprehensive spoken English program.",
-    image: "/src/assets/spoken_english.jpg",
+    image: spokenEnglishImg,
     features: [
       "Daily use English practice",
       "Grammar & vocabulary building",
@@ -123,7 +153,7 @@ const courses = [
   {
     title: "Spoken Hindi",
     description: "Practical Hindi communication skills for daily conversation and effective communication.",
-    image: "/src/assets/spoken_hindi.jpg",
+    image: spokenHindiImg,
     features: [
       "Practical spoken Hindi skills",
       "Daily communication focus",
@@ -140,7 +170,7 @@ const courses = [
   {
     title: "Mathematics",
     description: "School syllabus support with concept clarity and regular practice for academic excellence.",
-    image: "/src/assets/mathematics.jpg",
+    image: mathematicsImg,
     features: [
       "Aligned with school syllabus",
       "Concepts explained with examples",
@@ -181,8 +211,22 @@ const processSteps = [
 
 const CoursesPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   const handleEnquireClick = (courseTitle: string) => {
     setSelectedCourse(courseTitle);
@@ -251,6 +295,7 @@ const CoursesPage = () => {
               {courses.map((course, index) => (
                 <motion.div
                   key={course.title}
+                  id={course.title.toLowerCase().replace(/\s+/g, '-')}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -271,7 +316,7 @@ const CoursesPage = () => {
                     {/* Card Header with Image or Gradient */}
                     <div className={`h-64 overflow-hidden`}>
                       {course.image ? (
-                        <img
+                        <ImageWithLoading
                           src={course.image}
                           alt={course.title}
                           className="w-full h-full object-cover"
@@ -331,7 +376,7 @@ const CoursesPage = () => {
                       </ul>
 
                       {/* Button - Always at bottom */}
-                      <Button 
+                      <Button
                         onClick={() => handleEnquireClick(course.title)}
                         className="w-full h-12 gradient-green text-primary-foreground hover:opacity-90 group/btn text-base font-semibold"
                       >
@@ -397,9 +442,9 @@ const CoursesPage = () => {
         <CTASection />
       </main>
       <Footer />
-      
+
       {/* Enrollment Popup */}
-      <EnrollmentPopup 
+      <EnrollmentPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
         selectedCourse={selectedCourse}
