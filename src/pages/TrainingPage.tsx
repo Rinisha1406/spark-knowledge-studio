@@ -1,10 +1,12 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
+import { TrainingEnrollmentPopup } from "@/components/TrainingEnrollmentPopup";
 import { motion } from "framer-motion";
 import { Calculator, BrainCircuit, BookOpenText, Award, Clock, Users, CheckCircle, ArrowRight, Briefcase, GraduationCap, Target, Star, Sparkles, TrendingUp, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const trainings = [
   {
@@ -136,6 +138,13 @@ const successStories = [
 ];
 
 const TrainingPage = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedTraining, setSelectedTraining] = useState("");
+
+  const handleEnquireClick = (trainingTitle: string) => {
+    setSelectedTraining(trainingTitle);
+    setIsPopupOpen(true);
+  };
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -316,12 +325,13 @@ const TrainingPage = () => {
 
                         {/* CTA */}
                         <div className="flex flex-wrap gap-4 pt-6 border-t border-border">
-                          <Link to="/contact">
-                            <Button className="h-12 px-8 gradient-green text-primary-foreground hover:opacity-90 group/btn text-base font-semibold">
-                              Enquire Now
-                              <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                            </Button>
-                          </Link>
+                          <Button 
+                            onClick={() => handleEnquireClick(training.title)}
+                            className="h-12 px-8 gradient-green text-primary-foreground hover:opacity-90 group/btn text-base font-semibold"
+                          >
+                            Enquire Now
+                            <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
                           <a href="tel:+919092592817">
                             <Button variant="outline" className="h-12 px-8 border-2 text-base">
                               Call: +91 9092592817
@@ -393,6 +403,13 @@ const TrainingPage = () => {
         <CTASection />
       </main>
       <Footer />
+      
+      {/* Training Enrollment Popup */}
+      <TrainingEnrollmentPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        selectedTraining={selectedTraining}
+      />
     </div>
   );
 };

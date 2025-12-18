@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
+import { EnrollmentPopup } from "@/components/EnrollmentPopup";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const courses = [
   {
@@ -179,6 +181,13 @@ const processSteps = [
 
 const CoursesPage = () => {
   const navigate = useNavigate();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState("");
+
+  const handleEnquireClick = (courseTitle: string) => {
+    setSelectedCourse(courseTitle);
+    setIsPopupOpen(true);
+  };
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -322,12 +331,13 @@ const CoursesPage = () => {
                       </ul>
 
                       {/* Button - Always at bottom */}
-                      <Link to="/contact">
-                        <Button className="w-full h-12 gradient-green text-primary-foreground hover:opacity-90 group/btn text-base font-semibold">
-                          Enquire Now
-                          <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
+                      <Button 
+                        onClick={() => handleEnquireClick(course.title)}
+                        className="w-full h-12 gradient-green text-primary-foreground hover:opacity-90 group/btn text-base font-semibold"
+                      >
+                        Enquire Now
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
@@ -387,6 +397,13 @@ const CoursesPage = () => {
         <CTASection />
       </main>
       <Footer />
+      
+      {/* Enrollment Popup */}
+      <EnrollmentPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        selectedCourse={selectedCourse}
+      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen, Users, Award, Star, Play, CheckCircle, Sparkles }
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import heroChildren from "@/assets/hero-children.jpg";
+import logo from "@/assets/logo.png";
 
 const stats = [
   { icon: Users, value: "500+", label: "Happy Students", description: "Growing every year" },
@@ -45,7 +46,51 @@ export const Hero = () => {
 
       <div className="container relative z-10 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Content */}
+          {/* Left Content - About Page Design */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8, delay: 0.3 }} 
+            className="relative"
+          >
+            <div className="relative bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 rounded-3xl p-10 border border-border/50">
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/30 rounded-full blur-2xl" />
+              <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-primary/30 rounded-full blur-2xl" />
+
+              <div className="relative text-center">
+                <img
+                  src={logo}
+                  alt="Fairfin Eduhub Academy Logo"
+                  className="w-48 h-48 mx-auto mb-8 drop-shadow-xl"
+                />
+                <h3 className="text-3xl font-bold mb-3 text-foreground">Fairfin Eduhub Academy</h3>
+                <p className="text-foreground mb-4">A unit of Fairfin Technologies and Solutions</p>
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 text-accent-foreground font-semibold text-sm">
+                  <Award className="w-4 h-4" />
+                  ISO 9001:2015 Registered
+                </div>
+              </div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+              {stats.map((stat, index) => (
+                <motion.div 
+                  key={stat.label} 
+                  initial={{ opacity: 0, y: 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  transition={{ delay: 0.6 + index * 0.1 }} 
+                  className="bg-primary-foreground/10 backdrop-blur-md rounded-xl p-4 text-center border border-primary-foreground/10 hover:bg-primary-foreground/15 transition-colors"
+                >
+                  <stat.icon className="w-6 h-6 mx-auto mb-2 text-accent" />
+                  <div className="text-2xl font-bold text-primary-foreground">{stat.value}</div>
+                  <div className="text-xs text-primary-foreground/80 font-medium">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Content - Original Hero Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }} 
             animate={{ opacity: 1, x: 0 }} 
@@ -157,65 +202,6 @@ export const Hero = () => {
               </p>
               <div className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent max-w-32" />
             </motion.div>
-          </motion.div>
-
-          {/* Right Content - Image & Stats */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8, delay: 0.3 }} 
-            className="relative"
-          >
-            {/* Main Image Container */}
-            <div className="relative">
-              {/* Decorative frame */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 via-transparent to-primary-foreground/20 rounded-[2rem] blur-xl" />
-              
-              {/* Image */}
-              <div className="relative rounded-3xl overflow-hidden shadow-elevated border-4 border-primary-foreground/10">
-                <img 
-                  src={heroChildren} 
-                  alt="Happy children learning at Fairfin Eduhub Academy" 
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-                
-                {/* Floating badge on image */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute bottom-6 left-6 right-6 bg-primary-foreground/95 backdrop-blur-sm rounded-2xl p-4 shadow-elevated"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl gradient-green flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-foreground">Trusted by 500+ Families</p>
-                      <p className="text-sm text-muted-foreground">Quality education since day one</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-              {stats.map((stat, index) => (
-                <motion.div 
-                  key={stat.label} 
-                  initial={{ opacity: 0, y: 20 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  transition={{ delay: 0.6 + index * 0.1 }} 
-                  className="bg-primary-foreground/10 backdrop-blur-md rounded-xl p-4 text-center border border-primary-foreground/10 hover:bg-primary-foreground/15 transition-colors"
-                >
-                  <stat.icon className="w-6 h-6 mx-auto mb-2 text-accent" />
-                  <div className="text-2xl font-bold text-primary-foreground">{stat.value}</div>
-                  <div className="text-xs text-primary-foreground/80 font-medium">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>
