@@ -61,7 +61,7 @@ export const CoursesPreview = () => {
       {/* Background decoration */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
       <div className="absolute top-1/3 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      
+
       <div className="container relative">
         {/* Section Header */}
         <motion.div
@@ -78,7 +78,7 @@ export const CoursesPreview = () => {
             Popular Student Courses
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed">
-            Explore our most sought-after skill development programs designed specifically for children ages 4-14. 
+            Explore our most sought-after skill development programs designed specifically for children ages 4-14.
             Each course is crafted to build essential life skills through engaging methods.
           </p>
         </motion.div>
@@ -103,22 +103,22 @@ export const CoursesPreview = () => {
                   </span>
                 </div>
               )}
-              
+
               <div className="h-full p-6 bg-card rounded-2xl border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500 relative overflow-hidden">
                 {/* Hover gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`} />
-                
+
                 {/* Icon */}
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${course.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
                   <course.icon className="w-8 h-8 text-white" />
                 </div>
-                
+
                 {/* Content */}
                 <div className="text-center mb-6">
                   <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{course.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{course.description}</p>
                 </div>
-                
+
                 {/* Features */}
                 <ul className="space-y-2 mb-6">
                   {course.features.map((feature, i) => (
@@ -128,12 +128,12 @@ export const CoursesPreview = () => {
                     </li>
                   ))}
                 </ul>
-                
+
                 {/* CTA */}
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group-hover:border-primary transition-all"
-                  onClick={() => navigate('/courses')}
+                  onClick={() => navigate(`/courses#${course.title.toLowerCase().replace(/\s+/g, '-')}`)}
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -141,7 +141,7 @@ export const CoursesPreview = () => {
               </div>
             </motion.div>
           ))}
-        </div>  
+        </div>
 
         {/* View All CTA */}
         <motion.div
@@ -150,8 +150,8 @@ export const CoursesPreview = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="h-14 px-10 gradient-green text-primary-foreground hover:opacity-90 group text-base font-semibold"
             onClick={() => navigate('/courses')}
           >
