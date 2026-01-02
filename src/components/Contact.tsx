@@ -47,13 +47,41 @@ export const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Enquiry Submitted!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", phone: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost/spark-knowledge-studio/api/send_email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Enquiry Submitted!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", phone: "", email: "", message: "" });
+      } else {
+        throw new Error(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit enquiry. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,7 +102,7 @@ export const Contact = () => {
             Contact <span className="text-gradient">Us</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have questions about our programs? We'd love to hear from you. 
+            Have questions about our programs? We'd love to hear from you.
             Reach out and let's discuss how we can help your child excel.
           </p>
         </motion.div>
@@ -133,9 +161,9 @@ export const Contact = () => {
                     className="bg-background resize-none"
                   />
                 </div>
-                <Button type="submit" className="w-full gradient-green text-primary-foreground hover:opacity-90">
+                <Button type="submit" className="w-full gradient-green text-primary-foreground hover:opacity-90" disabled={isSubmitting}>
                   <Send className="w-4 h-4 mr-2" />
-                  Send Enquiry
+                  {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </Button>
               </form>
             </div>

@@ -1,11 +1,17 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+
+// Handle preflight request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 // Recipient email
-$to = 'fairfineduhubacademy@outlook.com';
+$to = 'rinisharini1406@gmail.com';
 
 // Get form data
 $data = json_decode(file_get_contents('php://input'), true);
@@ -65,10 +71,25 @@ $email_body = "
     </html>";
 
 // Send email
-if (mail($to, $subject, $email_body, $headers)) {
+// Send email
+$mail_sent = @mail($to, $subject, $email_body, $headers);
+
+// Fallback for localhost debugging (since SMTP might not be configured)
+if (!$mail_sent && ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_ADDR'] === '127.0.0.1' || $_SERVER['SERVER_ADDR'] === '::1')) {
+    $log_file = 'email_log.txt';
+    $log_entry = "--- New Submission [" . date('Y-m-d H:i:s') . "] ---\n";
+    $log_entry .= "To: $to\nSubject: $subject\nHeaders: $headers\n\nBody:\n$email_body\n\n";
+    
+    if (file_put_contents($log_file, $log_entry, FILE_APPEND)) {
+        $mail_sent = true; // Simulate success
+    }
+}
+
+if ($mail_sent) {
     echo json_encode(['success' => true, 'message' => 'Thank you for your message. We will get back to you soon!']);
 } else {
+    $error = error_get_last();
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Failed to send message. Please try again later.']);
+    echo json_encode(['success' => false, 'message' => 'Failed to send message. Please try again later.', 'debug_error' => $error ? $error['message'] : 'Unknown error']);
 }
 ?>

@@ -95,13 +95,41 @@ const ContactPage = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Enquiry Submitted Successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", phone: "", email: "", course: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost/spark-knowledge-studio/api/send_email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Enquiry Submitted Successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({ name: "", phone: "", email: "", course: "", message: "" });
+      } else {
+        throw new Error(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit enquiry. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -253,9 +281,9 @@ const ContactPage = () => {
                         className="resize-none text-base"
                       />
                     </div>
-                    <Button type="submit" className="w-full h-14 gradient-green text-primary-foreground hover:opacity-90 text-lg font-semibold">
+                    <Button type="submit" className="w-full h-14 gradient-green text-primary-foreground hover:opacity-90 text-lg font-semibold" disabled={isSubmitting}>
                       <Send className="w-5 h-5 mr-2" />
-                      Submit Enquiry
+                      {isSubmitting ? 'Sending...' : 'Submit Enquiry'}
                     </Button>
                   </form>
                 </div>

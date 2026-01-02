@@ -60,13 +60,41 @@ const FranchiseEnquiryPage = () => {
         }
     }, [location]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        toast({
-            title: "Franchise Enquiry Submitted!",
-            description: "Our franchise team will contact you shortly.",
-        });
-        setFormData({ name: "", phone: "", email: "", course: "Franchise Enquiry", message: "" });
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch('http://localhost/spark-knowledge-studio/api/send_email.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                toast({
+                    title: "Franchise Enquiry Submitted!",
+                    description: "Our franchise team will contact you shortly.",
+                });
+                setFormData({ name: "", phone: "", email: "", course: "Franchise Enquiry", message: "" });
+            } else {
+                throw new Error(data.message || 'Something went wrong');
+            }
+        } catch (error) {
+            toast({
+                title: "Error",
+                description: "Failed to submit enquiry. Please try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -198,9 +226,9 @@ const FranchiseEnquiryPage = () => {
                                     />
                                 </div>
 
-                                <Button type="submit" className="w-full h-14 gradient-green text-primary-foreground hover:opacity-90 text-lg font-semibold">
+                                <Button type="submit" className="w-full h-14 gradient-green text-primary-foreground hover:opacity-90 text-lg font-semibold" disabled={isSubmitting}>
                                     <Send className="w-5 h-5 mr-2" />
-                                    Submit Application
+                                    {isSubmitting ? 'Sending...' : 'Submit Application'}
                                 </Button>
                             </form>
                         </motion.div>

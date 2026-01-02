@@ -1,0 +1,140 @@
+--- New Submission [2026-01-02 09:30:34] ---
+To: rinisharini1406@gmail.com
+Subject: New Contact Form Submission: Franchise Enquiry
+Headers: From: rini <test@gmail.com>
+Reply-To: test@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+
+
+Body:
+
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #f8f9fa; padding: 15px; border-radius: 5px; }
+            .content { margin: 20px 0; }
+            .footer { margin-top: 30px; font-size: 0.9em; color: #6c757d; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h2>New Contact Form Submission</h2>
+            </div>
+            <div class='content'>
+                <p><strong>Name:</strong> rini</p><p><strong>Email:</strong> test@gmail.com</p><p><strong>Phone:</strong> +916379727163</p><p><strong>Course/Inquiry Type:</strong> Franchise Enquiry</p><p><strong>Message:</strong><br>test</p></div>
+            <div class='footer'>
+                <p>This email was sent from the contact form on your website.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+
+--- New Submission [2026-01-02 09:33:10] ---
+To: rinisharini1406@gmail.com
+Subject: New Contact Form Submission: Franchise Enquiry
+Headers: From: rini <rini@gmail.com>
+Reply-To: rini@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+
+
+Body:
+
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #f8f9fa; padding: 15px; border-radius: 5px; }
+            .content { margin: 20px 0; }
+            .footer { margin-top: 30px; font-size: 0.9em; color: #6c757d; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h2>New Contact Form Submission</h2>
+            </div>
+            <div class='content'>
+                <p><strong>Name:</strong> rini</p><p><strong>Email:</strong> rini@gmail.com</p><p><strong>Phone:</strong> +916379727163</p><p><strong>Course/Inquiry Type:</strong> Franchise Enquiry</p><p><strong>Message:</strong><br>test</p></div>
+            <div class='footer'>
+                <p>This email was sent from the contact form on your website.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+
+--- New Submission [2026-01-02 09:37:53] ---
+To: rinisharini1406@gmail.com
+Subject: New Contact Form Submission: Mathematics
+Headers: From: test <test@gmail.com>
+Reply-To: test@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+
+
+Body:
+
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #f8f9fa; padding: 15px; border-radius: 5px; }
+            .content { margin: 20px 0; }
+            .footer { margin-top: 30px; font-size: 0.9em; color: #6c757d; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h2>New Contact Form Submission</h2>
+            </div>
+            <div class='content'>
+                <p><strong>Name:</strong> test</p><p><strong>Email:</strong> test@gmail.com</p><p><strong>Phone:</strong> +916379727163</p><p><strong>Course/Inquiry Type:</strong> Mathematics</p><p><strong>Message:</strong><br>test</p></div>
+            <div class='footer'>
+                <p>This email was sent from the contact form on your website.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+
+--- New Submission [2026-01-02 09:38:48] ---
+To: rinisharini1406@gmail.com
+Subject: New Contact Form Submission: Franchise Enquiry
+Headers: From: test <test@gmail.com>
+Reply-To: test@gmail.com
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+
+
+Body:
+
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #f8f9fa; padding: 15px; border-radius: 5px; }
+            .content { margin: 20px 0; }
+            .footer { margin-top: 30px; font-size: 0.9em; color: #6c757d; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h2>New Contact Form Submission</h2>
+            </div>
+            <div class='content'>
+                <p><strong>Name:</strong> test</p><p><strong>Email:</strong> test@gmail.com</p><p><strong>Phone:</strong> +916379727163</p><p><strong>Course/Inquiry Type:</strong> Franchise Enquiry</p><p><strong>Message:</strong><br>test</p></div>
+            <div class='footer'>
+                <p>This email was sent from the contact form on your website.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+
