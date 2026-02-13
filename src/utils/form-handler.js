@@ -26,7 +26,7 @@ export async function handleFormSubmit(e, formType = 'contact') {
         };
 
         // Send data to server
-        const response = await fetch('/api/send_email.php', {
+        const response = await fetch('https://fairfineduhub.com/api/send_email.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

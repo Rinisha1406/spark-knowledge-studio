@@ -67,7 +67,7 @@ const FranchiseEnquiryPage = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('http://localhost/spark-knowledge-studio/api/send_email.php', {
+            const response = await fetch('https://fairfineduhub.com/api/send_email.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

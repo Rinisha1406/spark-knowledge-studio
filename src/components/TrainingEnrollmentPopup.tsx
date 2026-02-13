@@ -26,19 +26,38 @@ export const TrainingEnrollmentPopup = ({ isOpen, onClose, selectedTraining = ""
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Training form submitted:", formData);
-    // Handle form submission here
-    onClose();
-    // Reset form
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      course: selectedTraining,
-      message: ""
-    });
+    
+    try {
+      const response = await fetch('https://fairfineduhub.com/api/send_email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        alert('Training enrollment submitted successfully! We will get back to you within 24 hours.');
+        onClose();
+        // Reset form
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          course: selectedTraining,
+          message: ""
+        });
+      } else {
+        throw new Error(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error('Error submitting training form:', error);
+      alert('Failed to submit enrollment. Please try again.');
+    }
   };
 
   return (
