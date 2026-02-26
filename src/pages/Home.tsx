@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CoursesPreview } from "@/components/CoursesPreview";
+import { GallerySection } from "@/components/GallerySection";
 import { Testimonials } from "@/components/Testimonials";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -14,6 +15,7 @@ const Home = () => {
         <Hero />
         <WhyChooseUs />
         <CoursesPreview />
+        <GallerySection />
         <Testimonials />
         <CTASection />
       </main>

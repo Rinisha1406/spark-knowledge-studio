@@ -2,7 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
 import { EnrollmentPopup } from "@/components/EnrollmentPopup";
-import { motion } from "framer-motion";
+import { PageHero } from "@/components/PageHero";
+import { motion, useInView } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   CheckCircle,
@@ -15,7 +16,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Import images
 import abacusImg from "@/assets/abacus.jpg";
@@ -190,23 +191,35 @@ const processSteps = [
   {
     step: "01",
     title: "Free Demo Class",
-    description: "Experience our teaching methodology firsthand with a complimentary demo session"
+    description: "Experience our teaching methodology firsthand with a complimentary demo session",
+    icon: "🎓",
+    color: "from-emerald-400 to-teal-500",
+    glow: "rgba(16,185,129,0.4)",
   },
   {
     step: "02",
     title: "Assessment",
-    description: "We assess your child's current level to place them in the right batch"
+    description: "We assess your child's current level to place them in the right batch",
+    icon: "📋",
+    color: "from-blue-400 to-cyan-500",
+    glow: "rgba(59,130,246,0.4)",
   },
   {
     step: "03",
     title: "Enrollment",
-    description: "Choose a convenient batch timing and complete the enrollment process"
+    description: "Choose a convenient batch timing and complete the enrollment process",
+    icon: "✍️",
+    color: "from-violet-400 to-purple-500",
+    glow: "rgba(139,92,246,0.4)",
   },
   {
     step: "04",
     title: "Start Learning",
-    description: "Begin the exciting journey of skill development with our expert trainers"
-  }
+    description: "Begin the exciting journey of skill development with our expert trainers",
+    icon: "🚀",
+    color: "from-orange-400 to-amber-500",
+    glow: "rgba(251,146,60,0.4)",
+  },
 ];
 
 const CoursesPage = () => {
@@ -217,12 +230,22 @@ const CoursesPage = () => {
 
   useEffect(() => {
     if (location.hash) {
-      const element = document.getElementById(location.hash.substring(1));
-      if (element) {
-        setTimeout(() => {
+      const targetId = location.hash.substring(1);
+      let attempts = 0;
+      const maxAttempts = 20;
+
+      const tryScroll = () => {
+        const element = document.getElementById(targetId);
+        if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 100);
-      }
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          setTimeout(tryScroll, 100);
+        }
+      };
+
+      // Give the page a head start to render before first attempt
+      setTimeout(tryScroll, 300);
     } else {
       window.scrollTo(0, 0);
     }
@@ -236,40 +259,13 @@ const CoursesPage = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        {/* Hero Banner */}
-        <section className="relative pt-32 lg:pt-56 py-28 gradient-hero overflow-hidden">
-          <div className="absolute inset-0 bg-hero-pattern opacity-20" />
-          <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
-
-          <div className="container relative z-10 text-center">
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground font-semibold text-sm mb-6 border border-primary-foreground/20"
-            >
-              <Sparkles className="w-4 h-4 text-accent" />
-              8 Comprehensive Programs
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6"
-            >
-              Student Courses
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
-            >
-              Comprehensive skill development programs designed for children ages 4-14.
-              Each course is crafted to build essential skills through engaging, proven methodologies.
-            </motion.p>
-          </div>
-        </section>
+        <PageHero
+          badge="8 Comprehensive Programs"
+          badgeIcon={Sparkles}
+          title="Student Courses"
+          highlightWord="Courses"
+          description="Comprehensive skill development programs designed for children ages 4–14. Each course is crafted to build essential skills through engaging, proven methodologies."
+        />
 
         {/* Courses Grid */}
         <section className="py-24">
@@ -392,46 +388,132 @@ const CoursesPage = () => {
         </section>
 
         {/* Enrollment Process */}
-        <section className="py-24 bg-muted/30">
-          <div className="container">
+        <section className="py-24 bg-muted/30 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute inset-0 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              className="absolute top-10 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.7, 0.4] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-10 right-1/4 w-48 h-48 bg-accent/8 rounded-full blur-3xl"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            />
+          </div>
+
+          <div className="container relative">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              transition={{ duration: 0.7 }}
+              className="text-center mb-20"
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-5"
+              >
+                <motion.span animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>⚙️</motion.span>
                 How It Works
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Simple Enrollment Process
+              </motion.span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5">
+                Simple{" "}
+                <span className="relative inline-block">
+                  <span className="text-gradient">Enrollment</span>
+                  <motion.span
+                    className="absolute -bottom-1 left-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                  />
+                </span>
+                {" "}Process
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Getting started is easy! Follow these simple steps to enroll your child
               </p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative">
+              {/* Animated connector line across all steps */}
+              <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-0.5">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-emerald-400 via-blue-400 via-violet-400 to-orange-400 rounded-full"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: "easeInOut", delay: 0.4 }}
+                />
+                {/* Moving dot along line */}
+                <motion.div
+                  className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-primary shadow-lg"
+                  initial={{ left: "0%" }}
+                  animate={{ left: ["0%", "100%", "0%"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                />
+              </div>
+
               {processSteps.map((item, index) => (
                 <motion.div
                   key={item.step}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ type: "spring", stiffness: 120, damping: 16, delay: index * 0.15 }}
+                  whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
                   className="relative"
                 >
-                  {/* Connector line */}
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-primary to-primary/20 -translate-x-1/2" />
-                  )}
-
-                  <div className="text-center">
-                    <div className="w-20 h-20 rounded-full gradient-green flex items-center justify-center mx-auto mb-6 shadow-lg">
-                      <span className="text-2xl font-bold text-primary-foreground">{item.step}</span>
+                  <div className="text-center group">
+                    {/* Glow ring + step circle */}
+                    <div className="relative w-32 h-32 mx-auto mb-6">
+                      {/* Outer pulsing glow ring */}
+                      <motion.div
+                        className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.color} opacity-20 blur-md`}
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: index * 0.4 }}
+                      />
+                      {/* Step number badge */}
+                      <motion.div
+                        className={`absolute -top-1 -right-1 w-8 h-8 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg z-10 text-white text-xs font-bold`}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ type: "spring", stiffness: 400, delay: index * 0.15 + 0.4 }}
+                      >
+                        {item.step}
+                      </motion.div>
+                      {/* Main circle with emoji */}
+                      <motion.div
+                        className="w-full h-full rounded-full bg-card border-2 border-border/60 shadow-card flex items-center justify-center text-5xl relative overflow-hidden"
+                        whileHover={{ borderColor: "hsl(var(--primary)", boxShadow: `0 0 30px ${item.glow}` }}
+                      >
+                        {/* Shimmer on hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+                        <motion.span
+                          animate={{ y: [0, -6, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+                        >
+                          {item.icon}
+                        </motion.span>
+                      </motion.div>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+
+                    {/* Card content */}
+                    <motion.div
+                      className="bg-card rounded-2xl border border-border/50 p-5 shadow-soft relative overflow-hidden"
+                      whileHover={{ boxShadow: `0 20px 40px ${item.glow}` }}
+                    >
+                      {/* Top color bar */}
+                      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${item.color}`} />
+                      <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}

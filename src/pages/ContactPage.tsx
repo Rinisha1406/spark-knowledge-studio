@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/PageHero";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook, Send, MessageCircle, CheckCircle, Sparkles, Building, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -136,40 +137,13 @@ const ContactPage = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        {/* Hero Banner */}
-        <section className="relative pt-32 lg:pt-56 py-28 gradient-hero overflow-hidden">
-          <div className="absolute inset-0 bg-hero-pattern opacity-20" />
-          <div className="absolute top-20 right-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float-delayed" />
-
-          <div className="container relative z-10 text-center">
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground font-semibold text-sm mb-6 border border-primary-foreground/20"
-            >
-              <Sparkles className="w-4 h-4 text-accent" />
-              Get in Touch
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6"
-            >
-              Contact Us
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed"
-            >
-              Have questions or ready to enroll? We'd love to hear from you.
-              Reach out and let's discuss how we can help your child succeed.
-            </motion.p>
-          </div>
-        </section>
+        <PageHero
+          badge="Get in Touch"
+          badgeIcon={Sparkles}
+          title="Contact Us"
+          highlightWord="Us"
+          description="Have questions or ready to enroll? We'd love to hear from you. Reach out and let's discuss how we can help your child succeed."
+        />
 
         {/* Contact Info Cards */}
         <section className="py-12 -mt-16 relative z-20">

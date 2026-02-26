@@ -1,15 +1,24 @@
 import { motion } from "framer-motion";
-import { 
-  Calculator, 
-  BookOpenText, 
-  BrainCircuit, 
-  PenTool, 
-  Languages, 
+import {
+  Calculator,
+  BookOpenText,
+  BrainCircuit,
+  PenTool,
+  Languages,
   MessageCircle,
   MessagesSquare,
   GraduationCap
 } from "lucide-react";
 import { CourseCard } from "./CourseCard";
+
+import abacusImg from "../assets/abacus.jpg";
+import phonicsImg from "../assets/phonics.jpg";
+import vedicMathsImg from "../assets/vedic_maths.jpg";
+import handwritingImg from "../assets/handwriting.jpg";
+import hindiImg from "../assets/hindi.jpg";
+import spokenEnglishImg from "../assets/spoken_english.jpg";
+import spokenHindiImg from "../assets/spoken_hindi.jpg";
+import mathematicsImg from "../assets/mathematics.jpg";
 
 const courses = [
   {
@@ -21,7 +30,9 @@ const courses = [
       "Enhances focus, memory & concentration",
       "Certified trainers with proven methods",
       "Student books & practice materials provided"
-    ]
+    ],
+    image: abacusImg,
+    color: "from-emerald-500 to-teal-600",
   },
   {
     icon: BookOpenText,
@@ -32,7 +43,9 @@ const courses = [
       "Develops reading fluency step-by-step",
       "Suitable for beginners & early learners",
       "Fun & engaging learning activities"
-    ]
+    ],
+    image: phonicsImg,
+    color: "from-blue-500 to-cyan-600",
   },
   {
     icon: BrainCircuit,
@@ -43,7 +56,9 @@ const courses = [
       "Helps in school & competitive exams",
       "Covers all arithmetic operations",
       "Mental math mastery techniques"
-    ]
+    ],
+    image: vedicMathsImg,
+    color: "from-violet-500 to-purple-600",
   },
   {
     icon: PenTool,
@@ -54,7 +69,9 @@ const courses = [
       "Focus on letter formation & spacing",
       "Personalized practice sheets",
       "Regular progress assessments"
-    ]
+    ],
+    image: handwritingImg,
+    color: "from-rose-500 to-pink-600",
   },
   {
     icon: Languages,
@@ -65,7 +82,9 @@ const courses = [
       "Reading, writing & grammar",
       "Conversation practice",
       "Beginner to advanced levels"
-    ]
+    ],
+    image: hindiImg,
+    color: "from-orange-500 to-amber-600",
   },
   {
     icon: MessageCircle,
@@ -76,7 +95,9 @@ const courses = [
       "Grammar & vocabulary building",
       "Conversation & public speaking",
       "Builds speaking confidence"
-    ]
+    ],
+    image: spokenEnglishImg,
+    color: "from-sky-500 to-blue-600",
   },
   {
     icon: MessagesSquare,
@@ -87,7 +108,9 @@ const courses = [
       "Daily communication focus",
       "Speaking & listening practice",
       "Vocabulary building exercises"
-    ]
+    ],
+    image: spokenHindiImg,
+    color: "from-yellow-500 to-orange-500",
   },
   {
     icon: GraduationCap,
@@ -98,7 +121,9 @@ const courses = [
       "Concepts explained with examples",
       "Weekly practice worksheets",
       "Regular doubt clearing sessions"
-    ]
+    ],
+    image: mathematicsImg,
+    color: "from-green-500 to-emerald-600",
   }
 ];
 
@@ -118,7 +143,7 @@ export const StudentCourses = () => {
             Student <span className="text-gradient">Courses</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive skill development programs designed for children ages 4-14. 
+            Comprehensive skill development programs designed for children ages 4-14.
             Each course is structured to build a strong foundation for academic excellence.
           </p>
         </motion.div>
@@ -134,6 +159,8 @@ export const StudentCourses = () => {
               features={course.features}
               index={index}
               variant="student"
+              image={course.image}
+              color={course.color}
             />
           ))}
         </div>
